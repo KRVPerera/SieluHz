@@ -2,6 +2,9 @@
 C++ project. */
 
 import QtQuick
+import QtCore
+import QtQuick.Layouts
+import QtQuick.Controls
 import content
 
 App {

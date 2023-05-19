@@ -1,71 +1,125 @@
+
+
 /*
 This is a UI file (.ui.qml) that is intended to be edited in Qt Design Studio only.
 It is supposed to be strictly declarative and only uses a subset of QML. If you edit
 this file manually, you might introduce QML code that is not supported by Qt Design Studio.
 Check out https://doc.qt.io/qtcreator/creator-quick-ui-forms.html for details on .ui.qml files.
 */
-
 import QtQuick 6.2
 import QtQuick.Controls 6.2
 import SieluHz
+import QtQuick.Layouts
 
 Rectangle {
     id: rectangle
-    width: Constants.width
-    height: Constants.height
+    color: Constants.colorAccent4
+    width: 400
+    height: 600
+    anchors.fill: parent
 
-    color: Constants.backgroundColor
+    ColumnLayout {
+        width: parent.width
+        height: parent.height
 
-    Button {
-        id: button
-        text: qsTr("Press me")
-        anchors.verticalCenter: parent.verticalCenter
-        checkable: true
-        anchors.horizontalCenter: parent.horizontalCenter
+        spacing: 1
+        //        anchors.centerIn: parent
+        anchors.bottomMargin: 5
+        anchors.fill: parent
+        Layout.alignment: Qt.AlignCenter
 
-        Connections {
-            target: button
-            onClicked: animation.start()
+        Label {
+            color: "#EEEEEE"
+            text: "Colors Palettes"
+            horizontalAlignment: Text.AlignHCenter
+            font.bold: true
+            font.pointSize: 15
+            anchors.margins: 0
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.colorPrimary
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.colorAccent1
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.colorAccent2
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.colorAccent3
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_900
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_800
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_700
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_600
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_400
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_300
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_200
+            Layout.alignment: Qt.AlignCenter
+        }
+
+        Rectangle {
+            width: parent.width
+            height: parent.height / 14
+            color: Constants.color_100
+            Layout.alignment: Qt.AlignCenter
         }
     }
-
-    Text {
-        id: label
-        text: qsTr("Hello SieluHz")
-        anchors.top: button.bottom
-        font.family: Constants.font.family
-        anchors.topMargin: 45
-        anchors.horizontalCenter: parent.horizontalCenter
-
-        SequentialAnimation {
-            id: animation
-
-            ColorAnimation {
-                id: colorAnimation1
-                target: rectangle
-                property: "color"
-                to: "#2294c6"
-                from: Constants.backgroundColor
-            }
-
-            ColorAnimation {
-                id: colorAnimation2
-                target: rectangle
-                property: "color"
-                to: Constants.backgroundColor
-                from: "#2294c6"
-            }
-        }
-    }
-    states: [
-        State {
-            name: "clicked"
-            when: button.checked
-
-            PropertyChanges {
-                target: label
-                text: qsTr("Button Checked")
-            }
-        }
-    ]
 }
