@@ -3,16 +3,20 @@
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QStringList>
 
 #include "app_environment.h"
 #include "import_qml_components_plugins.h"
 #include "import_qml_plugins.h"
+#include <QtQml/qqmlextensionplugin.h>
+#include <QtQuickControls2/qquickstyle.h>
 
 int main(int argc, char *argv[])
 {
     set_qt_environment();
 
     QGuiApplication app(argc, argv);
+    QQuickStyle::setStyle("Material");
 
     QQmlApplicationEngine engine;
     const QUrl url(u"qrc:Main/main.qml"_qs);
