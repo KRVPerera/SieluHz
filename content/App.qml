@@ -49,6 +49,13 @@ Window {
 
             Pane {
                 padding: 0
+                MemoryBlock {
+                    id: id1
+                }
+            }
+
+            Pane {
+                padding: 0
                 Screen01 {
                     id: mainScreen
                 }

@@ -13,7 +13,10 @@ qt6_add_qml_module(content
         EffectsScreen.ui.qml
         LoadedFile.ui.qml
         ButtonX.qml
+        MemoryBlock.qml
         MemoryGame.qml
     RESOURCES
         fonts/fonts.txt
+        resources/pics/tile.png
+        resources/pics/im1.png
 )

@@ -28,6 +28,8 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             anchors.margins: 0
+
+
         }
 
         RowLayout {
