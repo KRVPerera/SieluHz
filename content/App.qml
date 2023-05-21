@@ -41,24 +41,28 @@ Window {
             Layout.fillHeight: true
 
             Pane {
+                padding: 0
                 MemoryGame {
                     id: memory
                 }
             }
 
             Pane {
+                padding: 0
                 Screen01 {
                     id: mainScreen
                 }
             }
 
             Pane {
+                padding: 0
                 EffectsScreen {
                     id: loadTextResource
                 }
             }
 
             Pane {
+                padding: 0
                 LoadedFile {
                     id: loadFile
                 }

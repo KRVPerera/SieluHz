@@ -14,6 +14,8 @@ Rectangle {
     anchors.fill: parent
     Layout.fillWidth: true
 
+    SystemPalette { id: activePalette }
+
     ColumnLayout {
         anchors.fill: parent
         Layout.fillWidth: true
@@ -33,12 +35,16 @@ Rectangle {
             height: parent.height - background.height
             spacing: 0
 
-            Button {
+            ButtonX {
+                id: btnNewGame
                 text: "New Game"
                 onClicked: console.log("This is blank")
-                height: parent.height
-                Layout.leftMargin: 10
-                Layout.bottomMargin: 10
+            }
+
+            ButtonX {
+                id: btnHighScores
+                text: "High Scores"
+                onClicked: console.log("This is blank")
             }
 
             Item {
