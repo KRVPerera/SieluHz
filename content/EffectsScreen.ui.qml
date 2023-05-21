@@ -6,22 +6,22 @@ import QtQuick.Layouts
 Rectangle {
     id: effectRectangle
     color: Constants.color_50
-    width: 640
-    height: 800
     anchors.fill: parent
     anchors.margins: 0
+    Layout.fillWidth: true
+    Layout.fillHeight: true
 
     ColumnLayout {
-        width: 620
-        height: 780
+        Layout.fillWidth: true
+        Layout.fillHeight: true
         spacing: 2
         anchors.centerIn: parent
         Layout.alignment: Qt.AlignCenter
 
         Label {
             color: Constants.colorBlack
-            text: "@string/cutter"
-            horizontalAlignment: Text.AlignHCenter
+            text: qsTr("CUTTER_MESSAGE")
+            horizontalAlignment: Text.AlignCenter
             font.bold: true
             font.pointSize: 15
             anchors.margins: 0

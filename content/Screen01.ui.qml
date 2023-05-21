@@ -19,11 +19,9 @@ Rectangle {
     anchors.fill: parent
 
     ColumnLayout {
-        width: 620
-        height: parent.height
-
+        Layout.fillWidth: true
+        Layout.fillHeight: true
         spacing: 1
-        //        anchors.centerIn: parent
         anchors.bottomMargin: 5
         anchors.fill: parent
         antialiasing: false
@@ -31,7 +29,7 @@ Rectangle {
 
         Label {
             color: Constants.colorBlack
-            text: "Colors Palettes"
+            text: "Color Palette"
             horizontalAlignment: Text.AlignHCenter
             font.bold: true
             font.pointSize: 15
@@ -40,85 +38,85 @@ Rectangle {
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredHeight: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
             color: Constants.colorPrimary
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.colorAccent1
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.colorAccent2
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.colorAccent3
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_900
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_800
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_700
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_600
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_400
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_300
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_200
             Layout.alignment: Qt.AlignCenter
         }
 
         Rectangle {
-            width: parent.width * 0.7
-            height: parent.height / 16
+            Layout.preferredWidth: parent.width * 0.7
+            Layout.preferredHeight: parent.height / 16
             color: Constants.color_100
             Layout.alignment: Qt.AlignCenter
         }

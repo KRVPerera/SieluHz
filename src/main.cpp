@@ -15,6 +15,8 @@ int main(int argc, char *argv[])
 {
     set_qt_environment();
 
+    qputenv("QML_XHR_ALLOW_FILE_READ", "1");
+
     QGuiApplication app(argc, argv);
     QQuickStyle::setStyle("Material");
 

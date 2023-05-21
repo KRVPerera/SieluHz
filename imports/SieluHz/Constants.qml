@@ -26,23 +26,23 @@ QtObject {
 //    }
 
 
-    readonly property color colorPrimary: "#673AB7"
-    readonly property color colorAccent1: "#B388FF"
-    readonly property color colorAccent2: "#7C4DFF"
-    readonly property color colorAccent3: "#651FFF"
-    readonly property color colorAccent4: "#6200EA"
+    readonly property color colorPrimary: "#009688"
+    readonly property color colorAccent1: "#A7FFEB"
+    readonly property color colorAccent2: "#64FFDA"
+    readonly property color colorAccent3: "#1DE9B6"
+    readonly property color colorAccent4: "#00BFA5"
     readonly property color colorBlack: "#000000"
     readonly property color colorWhite: "#FFFFFF"
 
-    readonly property color color_50: "#EDE7F6"
-    readonly property color color_100: "#D1C4E9"
-    readonly property color color_200: "#B39DDB"
-    readonly property color color_300: "#9575CD"
-    readonly property color color_400: "#7E57C2"
+    readonly property color color_50: "#E0F2F1"
+    readonly property color color_100: "#B2DFDB"
+    readonly property color color_200: "#80CBC4"
+    readonly property color color_300: "#4DB6AC"
+    readonly property color color_400: "#26A69A"
     readonly property color color_500: colorPrimary
-    readonly property color color_600: "#5E35B1"
-    readonly property color color_700: "#512DA8"
-    readonly property color color_800: "#4527A0"
-    readonly property color color_900: "#311B92"
+    readonly property color color_600: "#00897B"
+    readonly property color color_700: "#00796B"
+    readonly property color color_800: "#00695C"
+    readonly property color color_900: "#004D40"
 
 }

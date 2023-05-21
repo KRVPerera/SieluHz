@@ -13,29 +13,61 @@ Window {
     title: "SieluHz"
     color: Constants.color_50
 
+    function getStringResource(key) {
+        return QtAndroid.callQtAndroidActivityMethod("getStringResource", key);
+    }
+
+    function loadFileFromAssets(filePath) {
+        var fileContent = "";
+        var fileRequest = new XMLHttpRequest();
+        fileRequest.open("GET", filePath, false);
+        fileRequest.send();
+        if (fileRequest.status === 200) {
+            fileContent = fileRequest.responseText;
+        } else {
+            console.log("Failed to open file:", fileRequest.statusText);
+        }
+        return fileContent;
+    }
+
     ColumnLayout {
         anchors.fill: parent
+
         SwipeView {
             id: viewMain
             currentIndex: 0
-            anchors.fill: parent
-//            anchors.margins: 0
+            anchors.top: parent.top
             Layout.fillWidth: true
             Layout.fillHeight: true
 
             Pane {
-//                width: viewMain.width
-//                height: viewMain.height
+                MemoryGame {
+                    id: memory
+                }
+            }
+
+            Pane {
                 Screen01 {
                     id: mainScreen
                 }
             }
 
             Pane {
-//                width: viewMain.width
-//                height: viewMain.height
                 EffectsScreen {
-                    id: swipeScreen
+                    id: loadTextResource
+                }
+            }
+
+            Pane {
+                LoadedFile {
+                    id: loadFile
+                }
+            }
+
+            Connections {
+                target: loadFile
+                onClickedSignal : {
+                    loadFile.fileContentText.text = "Button clicked"
                 }
             }
         }
@@ -47,8 +79,8 @@ Window {
             interactive: true
             anchors.horizontalCenter: parent.horizontalCenter
             delegate: Rectangle {
-                implicitWidth: 8
-                implicitHeight: 8
+                implicitWidth: 15
+                implicitHeight: 15
 
                 radius: width / 2
                 color: Constants.color_900

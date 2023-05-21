@@ -11,6 +11,8 @@ qt6_add_qml_module(content
         App.qml
         Screen01.ui.qml
         EffectsScreen.ui.qml
+        LoadedFile.ui.qml
+        MemoryGame.qml
     RESOURCES
         fonts/fonts.txt
 )
