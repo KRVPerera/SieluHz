@@ -42,4 +42,7 @@ qt6_add_qml_module(content
         resources/pics/globe.png
         resources/pics/air-hot-balloon.png
         resources/pics/cpp.png
+        resources/pics/woman.png
+        resources/pics/fan.png
+        resources/pics/hawaiian-shirt.png
 )

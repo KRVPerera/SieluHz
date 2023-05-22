@@ -133,7 +133,6 @@ const dataArray = [
 
 var cardArray = duplicateCards();
 
-//Index function used instead of a 2D array
 function index(column, row) {
   return column + row * maxColumn;
 }
@@ -146,7 +145,6 @@ function startNewGame() {
 }
 
 function redraw() {
-  //   cleanBoard();
   calculateBoadSizes();
   redrawBlocks();
 }
