@@ -36,7 +36,6 @@ Window {
         SwipeView {
             id: viewMain
             currentIndex: 0
-            anchors.top: parent.top
             Layout.fillWidth: true
             Layout.fillHeight: true
 
@@ -44,13 +43,6 @@ Window {
                 padding: 0
                 MemoryGame {
                     id: memory
-                }
-            }
-
-            Pane {
-                padding: 0
-                MemoryBlock {
-                    id: id1
                 }
             }
 
@@ -72,13 +64,6 @@ Window {
                 padding: 0
                 LoadedFile {
                     id: loadFile
-                }
-            }
-
-            Connections {
-                target: loadFile
-                onClickedSignal : {
-                    loadFile.fileContentText.text = "Button clicked"
                 }
             }
         }

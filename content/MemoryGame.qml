@@ -47,6 +47,12 @@ Rectangle {
                 onClicked: console.log("This is blank")
             }
 
+            ButtonX {
+                id: btnRedraw
+                text: "Redraw"
+                onClicked: MemoryGame.redraw()
+            }
+
             Item {
                 Layout.fillWidth: true
             }

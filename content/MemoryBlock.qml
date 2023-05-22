@@ -12,10 +12,13 @@ import QtQuick 6.2
 
     property bool isActive: false;
     property bool isSolved: false;
+    property int dataId: -1;
+    property int imgId: -1;
     property string activeImage: "resources/pics/im1.png";
 
      onClicked: {
              isActive = !isActive;
+             console.log("Cliked imgId : ", imgId, " ID: ", dataId)
          }
 
      Image {

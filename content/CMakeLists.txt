@@ -37,4 +37,9 @@ qt6_add_qml_module(content
         resources/pics/roller-skate.png
         resources/pics/square.png
         resources/pics/star.png
+        resources/pics/train.png
+        resources/pics/car.png
+        resources/pics/globe.png
+        resources/pics/air-hot-balloon.png
+        resources/pics/cpp.png
 )
