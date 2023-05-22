@@ -5,14 +5,14 @@ import QtQuick 6.2
 */
 
  Rectangle {
-     id: block
-     signal clicked
-     border { width: 4; color: "#004D40" }
-//     radius: 20
-     width: 200
-     height: 200
+    id: block
+    signal clicked
+    border { width: 4; color: "#004D40" }
+    radius: 20
 
-     property bool isActive: false;
+    property bool isActive: false;
+    property bool isSolved: false;
+    property string activeImage: "resources/pics/im1.png";
 
      onClicked: {
              isActive = !isActive;
@@ -23,9 +23,11 @@ import QtQuick 6.2
          anchors.fill: parent
          source: {
              if (isActive)
-                 return "resources/pics/im1.png"
+                 return activeImage
+             else if (isSolved)
+                 return "resources/pics/square.png"
              else
-                 return "resources/pics/tile.png"
+                 return "resources/pics/frame.png"
          }
      }
 

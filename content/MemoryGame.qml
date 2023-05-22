@@ -2,7 +2,7 @@ import QtQuick 6.2
 //import SieluHz
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
-
+ import "MemoryGame.js" as MemoryGame
 
 /**
   * This is taken from QML examples
@@ -28,8 +28,6 @@ Rectangle {
             Layout.fillWidth: true
             Layout.fillHeight: true
             anchors.margins: 0
-
-
         }
 
         RowLayout {
@@ -40,7 +38,7 @@ Rectangle {
             ButtonX {
                 id: btnNewGame
                 text: "New Game"
-                onClicked: console.log("This is blank")
+                onClicked: MemoryGame.startNewGame()
             }
 
             ButtonX {

@@ -15,8 +15,26 @@ qt6_add_qml_module(content
         ButtonX.qml
         MemoryBlock.qml
         MemoryGame.qml
+        MemoryGame.js
     RESOURCES
         fonts/fonts.txt
         resources/pics/tile.png
         resources/pics/im1.png
+        resources/pics/alarm-clock.png
+        resources/pics/book.png
+        resources/pics/card-game.png
+        resources/pics/card-games.png
+        resources/pics/checker-board.png
+        resources/pics/confrontation.png
+        resources/pics/cover.png
+        resources/pics/diamond.png
+        resources/pics/edit.png
+        resources/pics/frame.png
+        resources/pics/game.png
+        resources/pics/hourglass.png
+        resources/pics/like.png
+        resources/pics/photo-camera.png
+        resources/pics/roller-skate.png
+        resources/pics/square.png
+        resources/pics/star.png
 )
