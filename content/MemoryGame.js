@@ -182,15 +182,8 @@ function handleClick(newIndex, imgId) {
   console.log(imagesChosen);
   if (imagesChosen.length === 2) {
     isFlipping = true;
-
-    var timer = new QTimer();
-    timer.interval = 400;
-    timer.singleShot = true;
-    timer.timeout.connect(this, function () {
-      checkForMatch();
-      isFlipping = false;
-    });
-    timer.start();
+    checkForMatch();
+    isFlipping = false;
   }
 }
 
@@ -307,7 +300,6 @@ function cleanBoard() {
 
 function redrawBlock(column, row, indexVal) {
   var card = board[indexVal];
-
   card.x = column * blockWidth + leftAndRightScreenPadding;
   card.y = row * blockHeight + topAndBottomScreenPadding;
   card.width = blockWidth;
