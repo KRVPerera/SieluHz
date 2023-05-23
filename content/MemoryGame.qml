@@ -34,6 +34,14 @@ Rectangle {
             // anchors.margins: 0
             // anchors.centerIn: parent
             property bool flipping: true;
+
+            onWidthChanged: {
+                MemoryGame.redraw(background.width, background.height, background)
+            }
+
+            onHeightChanged: {
+                MemoryGame.redraw(background.width, background.height)
+            }
         }
 
         // Item {
@@ -67,12 +75,6 @@ Rectangle {
                 id: btnHighScores
                 text: "High Scores"
                 onClicked: console.log("This is blank")
-            }
-
-            ButtonX {
-                id: btnRedraw
-                text: "Redraw"
-                onClicked: MemoryGame.redraw(background.width, background.height, background)
             }
 
             Item {

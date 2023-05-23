@@ -6,8 +6,13 @@ var maxRow = 5;
 var maxIndex = maxColumn * maxRow;
 var board = new Array(maxIndex);
 var component;
-var leftScreenPadding = 20;
-var topScreenPadding = 20;
+var leftAndRightScreenPadding = 20;
+var topAndBottomScreenPadding = 20;
+
+const tilesPerRow = 6;
+const tilesPerColumn = 8;
+const columnGridSize = 68;
+const rowGridSize = 90;
 
 var imagesChosen = [];
 var cardsChosenId = [];
@@ -226,9 +231,9 @@ function startNewGame(backgroundWidth, backgroundHeight, background) {
   initializeGameTiles(background);
 }
 
-function redraw(backgroundWidth, backgroundHeight, background) {
+function redraw(backgroundWidth, backgroundHeight) {
   calculateBoadSizes(backgroundWidth, backgroundHeight);
-  redrawBlocks(background);
+  redrawBlocks();
 }
 
 function flipCardFunction() {
@@ -236,7 +241,7 @@ function flipCardFunction() {
   console.log("Cliked imgId : ", this.imgId, " ID: ", this.dataId);
 }
 
-function redrawBlocks(background) {
+function redrawBlocks() {
   for (var column = 0; column < maxColumn; column++) {
     for (var row = 0; row < maxRow; row++) {
       var indexVal = index(column, row);
@@ -244,7 +249,7 @@ function redrawBlocks(background) {
         break;
       }
       var card = board[indexVal];
-      redrawBlock(column, row, indexVal, background);
+      redrawBlock(column, row, indexVal);
     }
   }
 }
@@ -274,27 +279,23 @@ function initializeGameTiles(background) {
 }
 
 function calculateBoadSizes(backgroundWidth, backgroundHeight) {
-    const tilesPerRow = 6;
-    const tilesPerColumn = 8;
-    var columnGridSize = 68;
-    var rowGridSize = 90;
-    leftScreenPadding = backgroundWidth / columnGridSize;
-    topScreenPadding = backgroundHeight / rowGridSize;
-    var candidateBlockWidth = Math.floor(leftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
-    var candidateBlockHeight = Math.floor(topScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
+
+    var candidateLeftScreenPadding = backgroundWidth / columnGridSize;
+    var candidateTopScreenPadding = backgroundHeight / rowGridSize;
+    var candidateBlockWidth = Math.floor(candidateLeftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
+    var candidateBlockHeight = Math.floor(candidateTopScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
     var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight);
-    
+
     blockWidth = minimumTileSide;
     blockHeight = minimumTileSide;
-
-    leftScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
-    topScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
+    leftAndRightScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
+    topAndBottomScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
 
     maxColumn = Math.floor(
-        (backgroundWidth - leftScreenPadding * 2) / blockWidth
+        (backgroundWidth - leftAndRightScreenPadding * 2) / blockWidth
     );
     maxRow = Math.floor(
-        (backgroundHeight - topScreenPadding * 2) / blockHeight
+        (backgroundHeight - topAndBottomScreenPadding * 2) / blockHeight
     );
     maxIndex = maxRow * maxColumn;
 }
@@ -305,11 +306,11 @@ function cleanBoard() {
   }
 }
 
-function redrawBlock(column, row, indexVal, background) {
+function redrawBlock(column, row, indexVal) {
     var card = board[indexVal];
 
-    card.x = column * blockWidth + leftScreenPadding;
-    card.y = row * blockHeight + topScreenPadding;
+    card.x = column * blockWidth + leftAndRightScreenPadding;
+    card.y = row * blockHeight + topAndBottomScreenPadding;
     card.width = blockWidth;
     card.height = blockHeight;
     return true;
@@ -328,8 +329,8 @@ function createBlock(column, row, imagePath, indexVal, imgId, background) {
       console.log(component.errorString());
       return false;
     }
-    dynamicObject.x = column * blockWidth + leftScreenPadding;
-    dynamicObject.y = row * blockHeight + topScreenPadding;
+    dynamicObject.x = column * blockWidth + leftAndRightScreenPadding;
+    dynamicObject.y = row * blockHeight + topAndBottomScreenPadding;
     dynamicObject.width = blockWidth;
     dynamicObject.height = blockHeight;
     dynamicObject.activeImage = imagePath;

@@ -11,8 +11,8 @@ function createBlock(column, row, imagePath, dataId, imgId) {
       console.log(component.errorString());
       return false;
     }
-    dynamicObject.x = column * blockWidth + leftScreenPadding;
-    dynamicObject.y = row * blockHeight + topScreenPadding;
+    dynamicObject.x = column * blockWidth + leftAndRightScreenPadding;
+    dynamicObject.y = row * blockHeight + topAndBottomScreenPadding;
     dynamicObject.width = blockWidth;
     dynamicObject.height = blockHeight;
     dynamicObject.activeImage = imagePath;
