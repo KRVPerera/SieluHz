@@ -274,15 +274,29 @@ function initializeGameTiles(background) {
 }
 
 function calculateBoadSizes(backgroundWidth, backgroundHeight) {
-  leftScreenPadding = backgroundWidth / 8;
-  topScreenPadding = backgroundHeight / 10;
-  blockWidth = leftScreenPadding;
-  blockHeight = topScreenPadding;
-  maxColumn = Math.floor(
-    (backgroundWidth - leftScreenPadding * 2) / blockWidth
-  );
-  maxRow = Math.floor((backgroundHeight - topScreenPadding * 2) / blockHeight);
-  maxIndex = maxRow * maxColumn;
+    const tilesPerRow = 6;
+    const tilesPerColumn = 8;
+    var columnGridSize = 68;
+    var rowGridSize = 90;
+    leftScreenPadding = backgroundWidth / columnGridSize;
+    topScreenPadding = backgroundHeight / rowGridSize;
+    var candidateBlockWidth = Math.floor(leftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
+    var candidateBlockHeight = Math.floor(topScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
+    var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight);
+    
+    blockWidth = minimumTileSide;
+    blockHeight = minimumTileSide;
+
+    leftScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
+    topScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
+
+    maxColumn = Math.floor(
+        (backgroundWidth - leftScreenPadding * 2) / blockWidth
+    );
+    maxRow = Math.floor(
+        (backgroundHeight - topScreenPadding * 2) / blockHeight
+    );
+    maxIndex = maxRow * maxColumn;
 }
 
 function cleanBoard() {
@@ -292,19 +306,13 @@ function cleanBoard() {
 }
 
 function redrawBlock(column, row, indexVal, background) {
-  var card = board[indexVal];
+    var card = board[indexVal];
 
-//   if (component.status == Component.Ready) {
     card.x = column * blockWidth + leftScreenPadding;
     card.y = row * blockHeight + topScreenPadding;
     card.width = blockWidth;
     card.height = blockHeight;
-//   } else {
-//     console.log("error loading block component");
-//     console.log(component.errorString());
-//     return false;
-//   }
-  return true;
+    return true;
 }
 
 function createBlock(column, row, imagePath, indexVal, imgId, background) {

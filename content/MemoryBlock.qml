@@ -9,7 +9,7 @@ import "MemoryGame.js" as MemoryGame
     id: block
     signal clicked
     border { width: 4; color: "#004D40" }
-    radius: 20
+    radius: 10
 
     property bool isActive: false;
     property bool isSolved: false;

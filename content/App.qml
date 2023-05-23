@@ -7,8 +7,8 @@ import SieluHz
 import QtQuick.Layouts
 
 Window {
-    width: 640
-    height: 800
+    width: 680
+    height: 900
     visible: true
     title: "SieluHz"
     color: Constants.color_50
