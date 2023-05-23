@@ -186,9 +186,9 @@ function handleClick(newIndex, imgId) {
     var timer = new QTimer();
     timer.interval = 400;
     timer.singleShot = true;
-    timer.timeout.connect(this, function() {
-        checkForMatch();
-            isFlipping = false;
+    timer.timeout.connect(this, function () {
+      checkForMatch();
+      isFlipping = false;
     });
     timer.start();
   }
@@ -213,7 +213,7 @@ function checkForMatch() {
   imagesChosen = [];
   cardsChosenId = [];
   scoreValue = cardsWon.length;
-//   score.text = cardsWon.length;
+  //   score.text = cardsWon.length;
   if (cardsWon.length === cardArray.length / 2) {
     won = true;
     console.log("Congratulations! You found them all");
@@ -279,25 +279,24 @@ function initializeGameTiles(background) {
 }
 
 function calculateBoadSizes(backgroundWidth, backgroundHeight) {
+  var candidateLeftScreenPadding = backgroundWidth / columnGridSize;
+  var candidateTopScreenPadding = backgroundHeight / rowGridSize;
+  var candidateBlockWidth = Math.floor(candidateLeftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
+  var candidateBlockHeight = Math.floor(candidateTopScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
+  var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight);
 
-    var candidateLeftScreenPadding = backgroundWidth / columnGridSize;
-    var candidateTopScreenPadding = backgroundHeight / rowGridSize;
-    var candidateBlockWidth = Math.floor(candidateLeftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
-    var candidateBlockHeight = Math.floor(candidateTopScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
-    var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight);
+  blockWidth = minimumTileSide;
+  blockHeight = minimumTileSide;
+  leftAndRightScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
+  topAndBottomScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
 
-    blockWidth = minimumTileSide;
-    blockHeight = minimumTileSide;
-    leftAndRightScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
-    topAndBottomScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
-
-    maxColumn = Math.floor(
-        (backgroundWidth - leftAndRightScreenPadding * 2) / blockWidth
-    );
-    maxRow = Math.floor(
-        (backgroundHeight - topAndBottomScreenPadding * 2) / blockHeight
-    );
-    maxIndex = maxRow * maxColumn;
+  maxColumn = Math.floor(
+    (backgroundWidth - leftAndRightScreenPadding * 2) / blockWidth
+  );
+  maxRow = Math.floor(
+    (backgroundHeight - topAndBottomScreenPadding * 2) / blockHeight
+  );
+  maxIndex = maxRow * maxColumn;
 }
 
 function cleanBoard() {
@@ -307,40 +306,32 @@ function cleanBoard() {
 }
 
 function redrawBlock(column, row, indexVal) {
-    var card = board[indexVal];
+  var card = board[indexVal];
 
-    card.x = column * blockWidth + leftAndRightScreenPadding;
-    card.y = row * blockHeight + topAndBottomScreenPadding;
-    card.width = blockWidth;
-    card.height = blockHeight;
-    return true;
+  card.x = column * blockWidth + leftAndRightScreenPadding;
+  card.y = row * blockHeight + topAndBottomScreenPadding;
+  card.width = blockWidth;
+  card.height = blockHeight;
+  return true;
 }
 
 function createBlock(column, row, imagePath, indexVal, imgId, background) {
   if (component == null) component = Qt.createComponent("MemoryBlock.qml");
 
-  // Note that if Block.qml was not a local file, component.status would be
-  // Loading and we should wait for the component's statusChanged() signal to
-  // know when the file is downloaded and ready before calling createObject().
-//   if (component.status == Component.Ready) {
-    var dynamicObject = component.createObject(background);
-    if (dynamicObject == null) {
-      console.log("error creating block");
-      console.log(component.errorString());
-      return false;
-    }
-    dynamicObject.x = column * blockWidth + leftAndRightScreenPadding;
-    dynamicObject.y = row * blockHeight + topAndBottomScreenPadding;
-    dynamicObject.width = blockWidth;
-    dynamicObject.height = blockHeight;
-    dynamicObject.activeImage = imagePath;
-    dynamicObject.newIndex = indexVal;
-    dynamicObject.imgId = imgId;
-    board[indexVal] = dynamicObject;
-//   } else {
-//     console.log("error loading block component");
-//     console.log(component.errorString());
-//     return false;
-//   }
+  var dynamicObject = component.createObject(background);
+  if (dynamicObject == null) {
+    console.log("error creating block");
+    console.log(component.errorString());
+    return false;
+  }
+  dynamicObject.x = column * blockWidth + leftAndRightScreenPadding;
+  dynamicObject.y = row * blockHeight + topAndBottomScreenPadding;
+  dynamicObject.width = blockWidth;
+  dynamicObject.height = blockHeight;
+  dynamicObject.activeImage = imagePath;
+  dynamicObject.newIndex = indexVal;
+  dynamicObject.imgId = imgId;
+  board[indexVal] = dynamicObject;
+
   return true;
 }
