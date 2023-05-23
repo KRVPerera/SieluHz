@@ -15,12 +15,21 @@ if (Qt6_VERSION VERSION_LESS 6.2.0)
 message(FATAL_ERROR "You need Qt 6.2.0 or newer to build the application.")
 endif()
 
-qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp src/androidstringhelper.cpp src/androidstringhelper.h)
+qt_add_executable(${CMAKE_PROJECT_NAME} 
+src/main.cpp)
 
 # qt_standard_project_setup() requires Qt 6.3 or higher. See https://doc.qt.io/qt-6/qt-standard-project-setup.html for details.
 if (${QT_VERSION_MINOR} GREATER_EQUAL 3)
 qt6_standard_project_setup()
 endif()
+
+set(android_package_dir "${CMAKE_CURRENT_SOURCE_DIR}/android")
+set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR "${android_package_dir}")
+# get visibility on the IDE
+add_custom_target(cmake_example_android_package
+    SOURCES
+    ${android_package_dir}/AndroidManifest.xml
+)
 
 qt_add_resources(${CMAKE_PROJECT_NAME} "configuration"
     PREFIX "/"

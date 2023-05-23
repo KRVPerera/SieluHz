@@ -1,3 +1,4 @@
+.pragma library
 var blockWidth = 100;
 var blockHeight = 100;
 var maxColumn = 3;
@@ -7,6 +8,14 @@ var board = new Array(maxIndex);
 var component;
 var leftScreenPadding = 20;
 var topScreenPadding = 20;
+
+var imagesChosen = [];
+var cardsChosenId = [];
+var cardsWon = [];
+var isFlipping = false;
+var prevCardId = -1;
+var scoreValue = 0;
+var won = false;
 
 const dataArray = [
   {
@@ -133,23 +142,101 @@ const dataArray = [
 
 var cardArray = duplicateCards();
 
+function handleClick(newIndex, imgId) {
+  var currentClickedCardId = newIndex;
+  var iamgeId = imgId;
+
+  console.log(
+    "Cliked imgId : ",
+    iamgeId,
+    " new index : ",
+    currentClickedCardId
+  );
+
+  console.log("isFlipping : ", isFlipping);
+  if (isFlipping) {
+    return;
+  }
+
+  if (prevCardId === currentClickedCardId) {
+    console.log("prevCardId === currentClickedCardId");
+    prevCardId = -1;
+    imagesChosen = [];
+    cardsChosenId = [];
+    return;
+  }
+
+  console.log("Need to do check match");
+  console.log(currentClickedCardId);
+  console.log(prevCardId);
+  prevCardId = currentClickedCardId;
+  cardsChosenId.push(currentClickedCardId);
+  imagesChosen.push(iamgeId);
+
+  console.log(cardsChosenId);
+  console.log(imagesChosen);
+  if (imagesChosen.length === 2) {
+    isFlipping = true;
+
+    var timer = new QTimer();
+    timer.interval = 400;
+    timer.singleShot = true;
+    timer.timeout.connect(this, function() {
+        checkForMatch();
+            isFlipping = false;
+    });
+    timer.start();
+  }
+}
+
+function checkForMatch() {
+  const optionOneImageId = imagesChosen[0];
+  const optionTwoImageId = imagesChosen[1];
+  var choosenFirstCardId = cardsChosenId[0];
+  var choosenSecondCardId = cardsChosenId[1];
+  var firstCard = board[choosenFirstCardId];
+  var secondCard = board[choosenSecondCardId];
+  if (optionOneImageId === optionTwoImageId) {
+    firstCard.isSolved = true;
+    secondCard.isSolved = true;
+    cardsWon.push(optionTwoImageId);
+  } else {
+    firstCard.isActive = false;
+    secondCard.isActive = false;
+  }
+
+  imagesChosen = [];
+  cardsChosenId = [];
+  scoreValue = cardsWon.length;
+//   score.text = cardsWon.length;
+  if (cardsWon.length === cardArray.length / 2) {
+    won = true;
+    console.log("Congratulations! You found them all");
+  }
+}
+
 function index(column, row) {
   return column + row * maxColumn;
 }
 
-function startNewGame() {
+function startNewGame(backgroundWidth, backgroundHeight, background) {
   setupGameData();
   cleanBoard();
-  calculateBoadSizes();
-  initializeGameTiles();
+  calculateBoadSizes(backgroundWidth, backgroundHeight);
+  initializeGameTiles(background);
 }
 
-function redraw() {
-  calculateBoadSizes();
-  redrawBlocks();
+function redraw(backgroundWidth, backgroundHeight, background) {
+  calculateBoadSizes(backgroundWidth, backgroundHeight);
+  redrawBlocks(background);
 }
 
-function redrawBlocks() {
+function flipCardFunction() {
+  this.isActive = !this.isActive;
+  console.log("Cliked imgId : ", this.imgId, " ID: ", this.dataId);
+}
+
+function redrawBlocks(background) {
   for (var column = 0; column < maxColumn; column++) {
     for (var row = 0; row < maxRow; row++) {
       var indexVal = index(column, row);
@@ -157,7 +244,7 @@ function redrawBlocks() {
         break;
       }
       var card = board[indexVal];
-      redrawBlock(column, row, indexVal);
+      redrawBlock(column, row, indexVal, background);
     }
   }
 }
@@ -170,7 +257,7 @@ function duplicateCards() {
   return dataArray.concat(dataArray.slice());
 }
 
-function initializeGameTiles() {
+function initializeGameTiles(background) {
   board = new Array(cardArray.length);
 
   for (var column = 0; column < maxColumn; column++) {
@@ -181,20 +268,20 @@ function initializeGameTiles() {
       }
       board[indexVal] = null;
       var card = cardArray[indexVal];
-      createBlock(column, row, card.img, indexVal, card.imgId);
+      createBlock(column, row, card.img, indexVal, card.imgId, background);
     }
   }
 }
 
-function calculateBoadSizes() {
-  leftScreenPadding = background.width / 8;
-  topScreenPadding = background.height / 10;
+function calculateBoadSizes(backgroundWidth, backgroundHeight) {
+  leftScreenPadding = backgroundWidth / 8;
+  topScreenPadding = backgroundHeight / 10;
   blockWidth = leftScreenPadding;
   blockHeight = topScreenPadding;
   maxColumn = Math.floor(
-    (background.width - leftScreenPadding * 2) / blockWidth
+    (backgroundWidth - leftScreenPadding * 2) / blockWidth
   );
-  maxRow = Math.floor((background.height - topScreenPadding * 2) / blockHeight);
+  maxRow = Math.floor((backgroundHeight - topScreenPadding * 2) / blockHeight);
   maxIndex = maxRow * maxColumn;
 }
 
@@ -204,29 +291,29 @@ function cleanBoard() {
   }
 }
 
-function redrawBlock(column, row, indexVal) {
+function redrawBlock(column, row, indexVal, background) {
   var card = board[indexVal];
 
-  if (component.status == Component.Ready) {
+//   if (component.status == Component.Ready) {
     card.x = column * blockWidth + leftScreenPadding;
     card.y = row * blockHeight + topScreenPadding;
     card.width = blockWidth;
     card.height = blockHeight;
-  } else {
-    console.log("error loading block component");
-    console.log(component.errorString());
-    return false;
-  }
+//   } else {
+//     console.log("error loading block component");
+//     console.log(component.errorString());
+//     return false;
+//   }
   return true;
 }
 
-function createBlock(column, row, imagePath, dataId, imgId) {
+function createBlock(column, row, imagePath, indexVal, imgId, background) {
   if (component == null) component = Qt.createComponent("MemoryBlock.qml");
 
   // Note that if Block.qml was not a local file, component.status would be
   // Loading and we should wait for the component's statusChanged() signal to
   // know when the file is downloaded and ready before calling createObject().
-  if (component.status == Component.Ready) {
+//   if (component.status == Component.Ready) {
     var dynamicObject = component.createObject(background);
     if (dynamicObject == null) {
       console.log("error creating block");
@@ -238,13 +325,13 @@ function createBlock(column, row, imagePath, dataId, imgId) {
     dynamicObject.width = blockWidth;
     dynamicObject.height = blockHeight;
     dynamicObject.activeImage = imagePath;
-    dynamicObject.dataId = dataId;
+    dynamicObject.newIndex = indexVal;
     dynamicObject.imgId = imgId;
-    board[index(column, row)] = dynamicObject;
-  } else {
-    console.log("error loading block component");
-    console.log(component.errorString());
-    return false;
-  }
+    board[indexVal] = dynamicObject;
+//   } else {
+//     console.log("error loading block component");
+//     console.log(component.errorString());
+//     return false;
+//   }
   return true;
 }

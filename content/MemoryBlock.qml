@@ -1,4 +1,5 @@
 import QtQuick 6.2
+import "MemoryGame.js" as MemoryGame
 
 /**
 * <a href="https://www.flaticon.com/free-icons/construction-and-tools" title="construction and tools icons">Construction and tools icons created by surang - Flaticon</a>
@@ -12,14 +13,18 @@ import QtQuick 6.2
 
     property bool isActive: false;
     property bool isSolved: false;
-    property int dataId: -1;
+    // property int dataId: -1;
+    property int newIndex: -1;
     property int imgId: -1;
-    property string activeImage: "resources/pics/im1.png";
+    property string activeImage: "resources/pics/tile.png";
 
      onClicked: {
-             isActive = !isActive;
-             console.log("Cliked imgId : ", imgId, " ID: ", dataId)
-         }
+            if (isSolved) {
+                return;
+            }
+            isActive = !isActive;
+            MemoryGame.handleClick(newIndex, imgId)
+        }
 
      Image {
          id: img

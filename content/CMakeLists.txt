@@ -10,12 +10,15 @@ qt6_add_qml_module(content
     QML_FILES
         App.qml
         Screen01.ui.qml
-        EffectsScreen.ui.qml
-        LoadedFile.ui.qml
+        EffectsScreen.qml
+        LoadedFile.qml
         ButtonX.qml
         MemoryBlock.qml
         MemoryGame.qml
         MemoryGame.js
+    SOURCES
+        Timeout.h
+        Timeout.cpp
     RESOURCES
         fonts/fonts.txt
         resources/pics/tile.png

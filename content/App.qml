@@ -75,8 +75,8 @@ Window {
             interactive: true
             anchors.horizontalCenter: parent.horizontalCenter
             delegate: Rectangle {
-                implicitWidth: 15
-                implicitHeight: 15
+                implicitWidth: 20
+                implicitHeight: 20
 
                 radius: width / 2
                 color: Constants.color_900

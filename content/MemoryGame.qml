@@ -2,7 +2,7 @@ import QtQuick 6.2
 //import SieluHz
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
- import "MemoryGame.js" as MemoryGame
+import "MemoryGame.js" as MemoryGame
 
 /**
   * This is taken from QML examples
@@ -16,6 +16,10 @@ Rectangle {
 
     SystemPalette { id: activePalette }
 
+    Timeout {
+        id : gameTimer
+    }
+
     ColumnLayout {
         anchors.fill: parent
         Layout.fillWidth: true
@@ -24,11 +28,29 @@ Rectangle {
         Rectangle {
             id: background
             color: "#64FFDA"
-            height: 400
+            height: 360
             Layout.fillWidth: true
             Layout.fillHeight: true
-            anchors.margins: 0
+            // anchors.margins: 0
+            // anchors.centerIn: parent
+            property bool flipping: true;
         }
+
+        // Item {
+        //     id: gameCanvas
+
+        //     property int score: 0
+        //     property int blockSize: 40
+
+        //     width: parent.width - (parent.width % blockSize)
+        //     height: parent.height - (parent.height % blockSize)
+        //     anchors.centerIn: parent
+
+        //     MouseArea {
+        //         anchors.fill: parent
+        //         onClicked: (mouse)=> SameGame.handleClick(mouse.x, mouse.y)
+        //     }
+        // }
 
         RowLayout {
             id: toolBar
@@ -38,7 +60,7 @@ Rectangle {
             ButtonX {
                 id: btnNewGame
                 text: "New Game"
-                onClicked: MemoryGame.startNewGame()
+                onClicked: MemoryGame.startNewGame(background.width, background.height, background)
             }
 
             ButtonX {
@@ -50,12 +72,22 @@ Rectangle {
             ButtonX {
                 id: btnRedraw
                 text: "Redraw"
-                onClicked: MemoryGame.redraw()
+                onClicked: MemoryGame.redraw(background.width, background.height, background)
             }
 
             Item {
                 Layout.fillWidth: true
             }
+
+            Text {
+                id: timer
+                text: "time : 0    "
+                height: parent.height
+                color: "#FFFFFF"
+                antialiasing: true
+                font.pixelSize: 25
+                anchors.right: gameScreen.Right
+             }
 
             Text {
                 id: score

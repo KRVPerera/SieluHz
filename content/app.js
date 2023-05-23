@@ -51,31 +51,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   ];
 
-  // {
-  //     name: 'diamond',
-  //         img: 'images/diamond.png'
-  // },
-  // {
-  //     name: 'edit',
-  //         img: 'images/edit.png'
-  // },
-  // {
-  //     name: 'game',
-  //         img: 'images/game.png'
-  // },
-  // {
-  //     name: 'hourglass',
-  //         img: 'images/hourglass.png'
-  // },
-  // {
-  //     name: 'like',
-  //         img: 'images/like.png'
-  // },
-  // {
-  //     name: 'roller skate',
-  //         img: 'images/roller-skate.png'
-  // }
-
   cardArray.sort(() => 0.5 - Math.random());
   // create game board
 
