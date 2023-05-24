@@ -3,6 +3,7 @@ import QtQuick 6.2
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
 import "MemoryGame.js" as MemoryGame
+import timeout 1.0
 
 /**
   * This is taken from QML examples
@@ -16,8 +17,11 @@ Rectangle {
 
     SystemPalette { id: activePalette }
 
-    Timeout {
-        id : gameTimer
+    Connections {
+        target: Timeout
+        onClockChanged: {
+            console.log(Timeout.clock); // print the updated value
+        }
     }
 
     ColumnLayout {
@@ -83,7 +87,7 @@ Rectangle {
 
             Text {
                 id: timer
-                text: "time : 0    "
+                text: "Time : 0    "
                 height: parent.height
                 color: "#FFFFFF"
                 antialiasing: true

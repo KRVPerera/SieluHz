@@ -7,7 +7,7 @@ project(SieluHzApp LANGUAGES CXX)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
-find_package(QT NAMES Qt6 COMPONENTS Gui Qml Quick)
+find_package(QT NAMES Qt6 COMPONENTS Core Gui Qml Quick QuickControls2)
 find_package(Qt6 REQUIRED COMPONENTS Core Gui Qml Quick QuickControls2)
 
 # To build this application you need Qt 6.2.0 or higher
@@ -20,7 +20,7 @@ if (WIN32)
     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/resources/windows.rc")
     qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp ${app_icon_resource_windows})
 else()
-    qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)   
+    qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp timeout/Timeout.h)   
 endif()
 
 # qt_standard_project_setup() requires Qt 6.3 or higher. See https://doc.qt.io/qt-6/qt-standard-project-setup.html for details.

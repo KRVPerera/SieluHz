@@ -16,9 +16,6 @@ qt6_add_qml_module(content
         MemoryBlock.qml
         MemoryGame.qml
         MemoryGame.js
-    SOURCES
-        Timeout.h
-        Timeout.cpp
     RESOURCES
         fonts/fonts.txt
         resources/pics/tile.png

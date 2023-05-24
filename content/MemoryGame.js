@@ -241,7 +241,6 @@ function redrawBlocks() {
       if (indexVal >= cardArray.length) {
         break;
       }
-      var card = board[indexVal];
       redrawBlock(column, row, indexVal);
     }
   }
@@ -300,6 +299,9 @@ function cleanBoard() {
 
 function redrawBlock(column, row, indexVal) {
   var card = board[indexVal];
+  if (!card) {
+      return false;
+  }
   card.x = column * blockWidth + leftAndRightScreenPadding;
   card.y = row * blockHeight + topAndBottomScreenPadding;
   card.width = blockWidth;

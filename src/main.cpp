@@ -10,6 +10,7 @@
 #include "import_qml_plugins.h"
 #include <QtQml/qqmlextensionplugin.h>
 #include <QtQuickControls2/qquickstyle.h>
+#include "timeout/Timeout.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,18 +25,23 @@ int main(int argc, char *argv[])
     const QUrl url(u"qrc:Main/main.qml"_qs);
     QObject::connect(
         &engine, &QQmlApplicationEngine::objectCreated, &app,
-        [url](QObject *obj, const QUrl &objUrl) {
+        [url](QObject *obj, const QUrl &objUrl)
+        {
             if (!obj && url == objUrl)
                 QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
+
+    qmlRegisterSingletonType<Timeout>("timeout", 1, 0, "Timeout", &Timeout::create);
+    // qmlRegisterTypesAndRevisions<Timeout>("Timeout", 1);
 
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
 
     engine.load(url);
 
-    if (engine.rootObjects().isEmpty()) {
+    if (engine.rootObjects().isEmpty())
+    {
         return -1;
     }
 
