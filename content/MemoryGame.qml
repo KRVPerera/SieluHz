@@ -20,7 +20,8 @@ Rectangle {
     Connections {
         target: Timeout
         onClockChanged: {
-            console.log(Timeout.clock); // print the updated value
+            var formattedNumber = String(Timeout.clock).padStart(4, ' ');
+            timer.text = "Time : " + formattedNumber + "  "
         }
     }
 
@@ -48,22 +49,6 @@ Rectangle {
             }
         }
 
-        // Item {
-        //     id: gameCanvas
-
-        //     property int score: 0
-        //     property int blockSize: 40
-
-        //     width: parent.width - (parent.width % blockSize)
-        //     height: parent.height - (parent.height % blockSize)
-        //     anchors.centerIn: parent
-
-        //     MouseArea {
-        //         anchors.fill: parent
-        //         onClicked: (mouse)=> SameGame.handleClick(mouse.x, mouse.y)
-        //     }
-        // }
-
         RowLayout {
             id: toolBar
             height: parent.height - background.height
@@ -72,7 +57,11 @@ Rectangle {
             ButtonX {
                 id: btnNewGame
                 text: "New Game"
-                onClicked: MemoryGame.startNewGame(background.width, background.height, background)
+                onClicked: {
+                    Timeout.clock = 0;
+                    Timeout.initClock();
+                    MemoryGame.startNewGame(background.width, background.height, background)
+                }
             }
 
             ButtonX {
@@ -85,9 +74,9 @@ Rectangle {
                 Layout.fillWidth: true
             }
 
-            Text {
+             Text {
                 id: timer
-                text: "Time : 0    "
+                text: "Time :       "
                 height: parent.height
                 color: "#FFFFFF"
                 antialiasing: true
@@ -97,7 +86,7 @@ Rectangle {
 
             Text {
                 id: score
-                text: "Score: 0    "
+                text: "  Score: 0    "
                 height: parent.height
                 color: "#FFFFFF"
                 antialiasing: true

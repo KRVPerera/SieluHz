@@ -35,19 +35,9 @@ public:
         return theInstance;
     }
 
-    void setClock(int value)
-    {
-        if (m_clock == value)
-            return;
-
-        m_clock = value;
-        emit clockChanged(m_clock);
-    }
-
-    int clock()
-    {
-        return m_clock;
-    }
+    void setClock(int value);
+    Q_INVOKABLE void initClock();
+    int clock();
 
 signals:
     void clockChanged(int clock);
