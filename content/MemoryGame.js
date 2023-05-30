@@ -21,6 +21,7 @@ var isFlipping = false;
 var prevCardId = -1;
 var scoreValue = 0;
 var won = false;
+var timer = 0;
 
 const dataArray = [
   {
@@ -160,7 +161,7 @@ function handleClick(newIndex, imgId) {
 
   console.log("isFlipping : ", isFlipping);
   if (isFlipping) {
-    return;
+    return false;
   }
 
   if (prevCardId === currentClickedCardId) {
@@ -168,7 +169,7 @@ function handleClick(newIndex, imgId) {
     prevCardId = -1;
     imagesChosen = [];
     cardsChosenId = [];
-    return;
+    return true;
   }
 
   console.log("Need to do check match");
@@ -182,9 +183,17 @@ function handleClick(newIndex, imgId) {
   console.log(imagesChosen);
   if (imagesChosen.length === 2) {
     isFlipping = true;
-    checkForMatch();
+    timer = 0;
+    while (timer <= 100) {
+        timer++;
+    }
+    if (!checkForMatch()) {
+        isFlipping = false;
+        return false;
+    }
     isFlipping = false;
   }
+  return true;
 }
 
 function checkForMatch() {
@@ -194,6 +203,8 @@ function checkForMatch() {
   var choosenSecondCardId = cardsChosenId[1];
   var firstCard = board[choosenFirstCardId];
   var secondCard = board[choosenSecondCardId];
+    resetDataStructures();
+    scoreValue = cardsWon.length;
   if (optionOneImageId === optionTwoImageId) {
     firstCard.isSolved = true;
     secondCard.isSolved = true;
@@ -201,20 +212,29 @@ function checkForMatch() {
   } else {
     firstCard.isActive = false;
     secondCard.isActive = false;
+    return false;
   }
 
-  imagesChosen = [];
-  cardsChosenId = [];
-  scoreValue = cardsWon.length;
   //   score.text = cardsWon.length;
   if (cardsWon.length === cardArray.length / 2) {
     won = true;
     console.log("Congratulations! You found them all");
   }
+  return true;
 }
 
 function index(column, row) {
   return column + row * maxColumn;
+}
+
+function setTicks(ticks) {
+  timer = ticks;
+}
+
+function resetDataStructures() {
+    prevCardId = -1;
+    imagesChosen = [];
+    cardsChosenId = [];
 }
 
 function startNewGame(backgroundWidth, backgroundHeight, background) {
@@ -248,6 +268,8 @@ function redrawBlocks() {
 
 function setupGameData() {
   cardArray.sort(() => 0.5 - Math.random());
+  resetDataStructures();
+  cardsWon = [];
 }
 
 function duplicateCards() {
@@ -300,7 +322,7 @@ function cleanBoard() {
 function redrawBlock(column, row, indexVal) {
   var card = board[indexVal];
   if (!card) {
-      return false;
+    return false;
   }
   card.x = column * blockWidth + leftAndRightScreenPadding;
   card.y = row * blockHeight + topAndBottomScreenPadding;

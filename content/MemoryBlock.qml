@@ -22,18 +22,19 @@ import "MemoryGame.js" as MemoryGame
             if (isSolved) {
                 return;
             }
-            isActive = !isActive;
-            MemoryGame.handleClick(newIndex, imgId)
+            if (MemoryGame.handleClick(newIndex, imgId)) {
+                isActive = !isActive;
+            }
         }
 
      Image {
          id: img
          anchors.fill: parent
          source: {
-             if (isActive)
-                 return activeImage
-             else if (isSolved)
-                 return "resources/pics/square.png"
+             if (isSolved)
+                return "resources/pics/square.png"
+             else if (isActive)
+                return activeImage
              else
                  return "resources/pics/frame.png"
          }

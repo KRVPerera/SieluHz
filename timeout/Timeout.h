@@ -16,6 +16,7 @@ class Timeout : public QObject
 {
     Q_OBJECT
     Q_PROPERTY(int clock READ clock WRITE setClock NOTIFY clockChanged)
+    Q_PROPERTY(int ticks READ ticks WRITE setClock NOTIFY clockChanged)
     QML_ELEMENT
     QML_SINGLETON
     Q_DISABLE_COPY(Timeout)
@@ -31,16 +32,19 @@ public:
         Q_UNUSED(jsEngine);
 
         Timeout *theInstance = new Timeout();
-
         return theInstance;
     }
 
     void setClock(int value);
+    void setTicks(int value);
     Q_INVOKABLE void initClock();
+    Q_INVOKABLE void initTicks();
     int clock();
+    int ticks();
 
 signals:
     void clockChanged(int clock);
+    void tickChanged(int tick);
 
 private slots:
     void increaseClock()
@@ -48,7 +52,14 @@ private slots:
         setClock(m_clock + 1);
     }
 
+    void increaseTicks()
+    {
+        setTicks(m_ticks + 1);
+    }
+
 private:
     int m_clock;
+    int m_ticks;
     QTimer *m_timer;
+    QTimer *m_ticker;
 };

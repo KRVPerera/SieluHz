@@ -19,9 +19,15 @@ Rectangle {
 
     Connections {
         target: Timeout
+
         onClockChanged: {
-            var formattedNumber = String(Timeout.clock).padStart(4, ' ');
+            var formattedNumber = String(Timeout.clock).padStart(4, ' ')
             timer.text = "Time : " + formattedNumber + "  "
+        }
+
+        onTickChanged: {
+            MemoryGame.setTicks(Timeout.ticks)
+            console.log("Ticks : " + Timeout.ticks)
         }
     }
 
@@ -60,6 +66,7 @@ Rectangle {
                 onClicked: {
                     Timeout.clock = 0;
                     Timeout.initClock();
+                    Timeout.initTicks();
                     MemoryGame.startNewGame(background.width, background.height, background)
                 }
             }
@@ -74,15 +81,15 @@ Rectangle {
                 Layout.fillWidth: true
             }
 
-             Text {
+            Text {
                 id: timer
-                text: "Time :       "
+                text: ""
                 height: parent.height
                 color: "#FFFFFF"
                 antialiasing: true
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right
-             }
+            }
 
             Text {
                 id: score
@@ -92,7 +99,7 @@ Rectangle {
                 antialiasing: true
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right
-             }
+        }
         }  // RowLayout
     }  // ColumnLayout
 }  // Rectangle
