@@ -56,10 +56,15 @@ Rectangle {
         console.log(block.state)
     }
 
-    Image {
-        id: img
+    Rectangle {
+        id: imgRec
+        color: "#1DE9B6"
         anchors.fill: parent
-        source: "resources/pics/frame.png"
+        Image {
+            id: img
+            anchors.fill: parent
+            source: "resources/pics/frame.png"
+        }
     }
 
     SequentialAnimation {
