@@ -1,6 +1,6 @@
 import QtQuick 6.2
 import "MemoryGame.js" as MemoryGame
-
+import SieluHz
 
 /**
 * <a href="https://www.flaticon.com/free-icons/construction-and-tools" title="construction and tools icons">Construction and tools icons created by surang - Flaticon</a>
@@ -58,7 +58,7 @@ Rectangle {
 
     Rectangle {
         id: imgRec
-        color: "#1DE9B6"
+        color: Constants.colorAccent2
         anchors.fill: parent
         Image {
             id: img
@@ -137,6 +137,10 @@ Rectangle {
                 target: img
                 source: block.frameImage
             }
+            PropertyChanges {
+                target: block
+                radius: 10
+            }
         },
         State {
             name: "SOLVED"
@@ -144,12 +148,20 @@ Rectangle {
                 target: img
                 source: block.solvedImage
             }
+            PropertyChanges {
+                target: block
+                radius: 30
+            }
         },
         State {
             name: "ACTIVE"
             PropertyChanges {
                 target: img
                 source: block.activeImage
+            }
+            PropertyChanges {
+                target: block
+                radius: 10
             }
         }
     ]

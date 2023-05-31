@@ -22,6 +22,12 @@ void Timeout::initTicks()
     m_ticker->start(100);
 }
 
+void Timeout::stopAllTimers()
+{
+    m_ticker->stop();
+    m_timer->stop();
+}
+
 int Timeout::clock()
 {
     return m_clock;

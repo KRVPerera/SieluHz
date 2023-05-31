@@ -1,5 +1,5 @@
 import QtQuick 6.2
-//import SieluHz
+import SieluHz
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
 import "MemoryGame.js" as MemoryGame
@@ -11,7 +11,7 @@ import timeout 1.0
   */
 Rectangle {
     id: gameScreen
-    color: "#004D40"
+    color: Constants.color_900
     anchors.fill: parent
     Layout.fillWidth: true
 
@@ -30,6 +30,7 @@ Rectangle {
             console.log(Timeout.ticks)
             if (MemoryGame.isWon()) {
                 score.text = "    You Won!    "
+                Timeout.stopAllTimers();
             } else {
                 var scoreValue = MemoryGame.getScore();
                 var formattedNumber = String(scoreValue).padStart(4, ' ')
@@ -45,7 +46,7 @@ Rectangle {
 
         Rectangle {
             id: background
-            color: "#64FFDA"
+            color: Constants.colorAccent2
             height: 360
             Layout.fillWidth: true
             Layout.fillHeight: true
@@ -92,7 +93,7 @@ Rectangle {
                 id: timer
                 text: ""
                 height: parent.height
-                color: "#FFFFFF"
+                color: Constants.colorWhite
                 antialiasing: true
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right
@@ -102,7 +103,7 @@ Rectangle {
                 id: score
                 text: "  Score: 0    "
                 height: parent.height
-                color: "#FFFFFF"
+                color: Constants.colorWhite
                 antialiasing: true
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right

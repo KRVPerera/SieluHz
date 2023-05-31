@@ -39,6 +39,7 @@ public:
     void setTicks(int value);
     Q_INVOKABLE void initClock();
     Q_INVOKABLE void initTicks();
+    Q_INVOKABLE void stopAllTimers();
     int clock();
     int ticks();
 

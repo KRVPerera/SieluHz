@@ -146,26 +146,26 @@ var timer = 0;
 //  },
 //];
 
-//const dataArray = [
-//  {
-//    name: "alarm",
-//    img: "resources/pics/im1.png",
-//    imgId: 1,
-//  },
-//  {
-//    name: "book",
-//    img: "resources/pics/book.png",
-//    imgId: 2,
-//  }
-//];
-
 const dataArray = [
   {
     name: "alarm",
     img: "resources/pics/im1.png",
     imgId: 1,
+  },
+  {
+    name: "book",
+    img: "resources/pics/book.png",
+    imgId: 2,
   }
 ];
+
+//const dataArray = [
+//  {
+//    name: "alarm",
+//    img: "resources/pics/im1.png",
+//    imgId: 1,
+//  }
+//];
 
 var cardArray = duplicateCards();
 

@@ -16,6 +16,7 @@ qt6_add_qml_module(content
         MemoryBlock.qml
         MemoryGame.qml
         MemoryGame.js
+        GameData.js
     RESOURCES
         fonts/fonts.txt
         resources/pics/tile.png
