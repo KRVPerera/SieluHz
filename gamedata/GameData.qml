@@ -1,4 +1,5 @@
 pragma Singleton
+import QtQuick
 import QtQuick.LocalStorage
 
 QtObject {
@@ -14,19 +15,30 @@ QtObject {
         if (db === null) {
            db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)
            db.transaction(function(tx) {
-               tx.executeSql('CREATE TABLE IF NOT EXISTS employees(name TEXT, age INTEGER)')
+               tx.executeSql('CREATE TABLE IF NOT EXISTS sieluHzScores(name TEXT, score INTEGER)')
            })
         }
     }
 
-    function addData() {
+//    function addData() {
+//        if (db === null) {
+//            db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)
+//        }
+//        db.transaction(function(tx) {
+//            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["John Doe", 30])
+//            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["Rukshan Perera", 25])
+//        })
+//    }
+
+    function addData(name, score) {
         if (db === null) {
             db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)
         }
         db.transaction(function(tx) {
-            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["John Doe", 30])
-            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["Jane Smith", 25])
+            tx.executeSql('INSERT INTO sieluHzScores VALUES(?, ?)', [name, score])
         })
+        console.log(name)
+        console.log(score)
     }
 
     function fetchData() {
@@ -34,9 +46,16 @@ QtObject {
             db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)
         }
         db.transaction(function(tx) {
-            var result = tx.executeSql('SELECT * FROM employees')
+            tx.executeSql('DELETE FROM sieluHzScores
+            WHERE score NOT IN (
+              SELECT score
+              FROM sieluHzScores
+              ORDER BY score DESC
+              LIMIT 10
+            )')
+            var result = tx.executeSql('SELECT * FROM sieluHzScores ORDER BY score DESC LIMIT 10')
             for (var i = 0; i < result.rows.length; i++) {
-                console.log(result.rows.item(i).name, result.rows.item(i).age)
+                console.log(result.rows.item(i).name, result.rows.item(i).score)
             }
         })
     }

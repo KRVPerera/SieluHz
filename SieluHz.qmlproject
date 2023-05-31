@@ -12,6 +12,10 @@ Project {
         directory: "imports"
     }
 
+    QmlFiles {
+        directory: "gamedata"
+    }
+
     JavaScriptFiles {
         directory: "content"
     }

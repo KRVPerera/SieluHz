@@ -5,7 +5,7 @@ import QtQuick.Controls 6.2
 import "MemoryGame.js" as MemoryGame
 import timeout 1.0
 import QtQuick.LocalStorage
-//import GameData
+import gamedata
 
 /**
   * This is taken from QML examples
@@ -213,6 +213,7 @@ Rectangle {
                                             background.height, background)
                     animationNew.start()
                     MemoryGame.setWonColour(Constants.colorAccent2)
+                    GameData.openDatabase()
                 }
             }
 
@@ -231,29 +232,33 @@ Rectangle {
                 onClicked: console.log("This is blank")
             }
 
-//            ButtonX {
-//                id: createData
-//                text: "Create Data"
-//                onClicked: {
-//                    databaseSingleton.openDatabase()
-//                }
-//            }
+            ButtonX {
+                id: addData
+                text: "Add Data"
+                onClicked: {
+                    GameData.addData("asdad", 0)
+                    GameData.addData("dummy data", 0)
+                    GameData.addData("1", 1)
+                    GameData.addData("2", 2)
+                    GameData.addData("3", 3)
+                    GameData.addData("4", 4)
+                    GameData.addData("5", 5)
+                    GameData.addData("6", 6)
+                    GameData.addData("7", 7)
+                    GameData.addData("8", 8)
+                    GameData.addData("9", 9)
+                    GameData.addData("10", 10)
+                    GameData.addData("11", 11)
+                }
+            }
 
-//            ButtonX {
-//                id: addData
-//                text: "Add Data"
-//                onClicked: {
-//                     databaseSingleton.addData()
-//                }
-//            }
-
-//            ButtonX {
-//                id: fetchData
-//                text: "Fetch  Data"
-//                onClicked: {
-//                    databaseSingleton.fetchData()
-//                }
-//            }
+            ButtonX {
+                id: fetchData
+                text: "Fetch  Data"
+                onClicked: {
+                    GameData.fetchData()
+                }
+            }
 
             Item {
                 Layout.fillWidth: true

@@ -5,5 +5,4 @@ qt6_add_qml_module(timeout
     VERSION 1.0
     SOURCES
         Timeout.cpp Timeout.h
-        # Timeout.cpp
 )
