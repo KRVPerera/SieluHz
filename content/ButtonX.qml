@@ -13,12 +13,14 @@ Rectangle {
     antialiasing: true
     radius: 20
     property color buttonTextColor: Constants.colorWhite
+    property color buttonColor: Constants.color_600
+    property color buttonPressedColor: Constants.colorAccent2
 
     color: {
                 if (mouseArea.pressed)
-                    return Constants.colorAccent2
+                    return buttonPressedColor
                 else
-                    return Constants.color_600
+                    return buttonColor
             }
 
     MouseArea {

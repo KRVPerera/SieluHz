@@ -73,14 +73,26 @@ Rectangle {
 
         PropertyAction {
             target: btnNewGame
-            property: "color"
+            property: "buttonColor"
             value: Constants.color_600
         }
 
         PropertyAction {
             target: btnHighScores
-            property: "color"
+            property: "buttonColor"
             value: Constants.color_600
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "buttonPressedColor"
+            value: Constants.colorAccent2
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "buttonPressedColor"
+            value: Constants.colorAccent2
         }
 
         PropertyAction {
@@ -125,14 +137,26 @@ Rectangle {
 
         PropertyAction {
             target: btnNewGame
-            property: "color"
+            property: "buttonColor"
             value: Constants.gold_bg_900
         }
 
         PropertyAction {
             target: btnHighScores
-            property: "color"
+            property: "buttonColor"
             value: Constants.gold_bg_900
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "buttonPressedColor"
+            value: Constants.gold_bg_100
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "buttonPressedColor"
+            value: Constants.gold_bg_100
         }
 
         PropertyAction {
