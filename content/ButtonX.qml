@@ -12,6 +12,7 @@ Rectangle {
     border { width: 2; color: Qt.darker(activePalette.button) }
     antialiasing: true
     radius: 20
+    property color buttonTextColor: Constants.colorWhite
 
     color: {
                 if (mouseArea.pressed)
@@ -33,7 +34,7 @@ Rectangle {
                 if (mouseArea.pressed)
                     return Constants.colorBlack
                 else
-                    return Constants.colorWhite
+                    return buttonTextColor
             }
         text: container.text
     }

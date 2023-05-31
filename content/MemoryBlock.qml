@@ -21,16 +21,14 @@ Rectangle {
     property string activeImage: "resources/pics/tile.png"
     readonly property string frameImage: "resources/pics/frame.png"
     readonly property string solvedImage: "resources/pics/square.png"
+    property color cardBackGroundColor: Constants.colorAccent2
 
     onClicked: {
         if (block.state === 'SOLVED') {
             mouseArea.enabled = false;
             return
         }
-
         var initialState = block.state;
-
-
         if (MemoryGame.handleClick(newIndex, imgId)) {
             var newState = block.state;
             if (newState !== "SOLVED") {
@@ -52,13 +50,11 @@ Rectangle {
                 animationFrameToActiveToFrame.start();
             }
         }
-
-        console.log(block.state)
     }
 
     Rectangle {
         id: imgRec
-        color: Constants.colorAccent2
+        color: cardBackGroundColor
         anchors.fill: parent
         Image {
             id: img

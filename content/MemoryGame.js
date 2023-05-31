@@ -146,26 +146,26 @@ var timer = 0;
 //  },
 //];
 
-const dataArray = [
-  {
-    name: "alarm",
-    img: "resources/pics/im1.png",
-    imgId: 1,
-  },
-  {
-    name: "book",
-    img: "resources/pics/book.png",
-    imgId: 2,
-  }
-];
-
 //const dataArray = [
 //  {
 //    name: "alarm",
 //    img: "resources/pics/im1.png",
 //    imgId: 1,
+//  },
+//  {
+//    name: "book",
+//    img: "resources/pics/book.png",
+//    imgId: 2,
 //  }
 //];
+
+const dataArray = [
+  {
+    name: "alarm",
+    img: "resources/pics/im1.png",
+    imgId: 1,
+  }
+];
 
 var cardArray = duplicateCards();
 
@@ -268,6 +268,13 @@ function getScore() {
 
 function isWon() {
     return won;
+}
+
+function setWonColour(colorValue) {
+    for (let i = 0; i < board.length; i++) {
+      var card = board[i];
+      card.cardBackGroundColor = colorValue;
+    }
 }
 
 function redraw(backgroundWidth, backgroundHeight) {

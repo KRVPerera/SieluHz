@@ -45,4 +45,14 @@ QtObject {
     readonly property color color_800: "#00695C"
     readonly property color color_900: "#004D40"
 
+    readonly property color gold_bg_100: "#FFDF00"
+    readonly property color gold_bg_300: "#FFCC00"
+    readonly property color gold_bg_500: "#ECBD00"
+    readonly property color gold_bg_700: "#CC9900"
+    readonly property color gold_bg_900: "#B8860B"
+
+    readonly property color gold_bg_text_100: "#5C5346"
+    readonly property color gold_bg_text_500: "#CBA328"
+    readonly property color gold_bg_text_900: "#FFFFF0"
+
 }

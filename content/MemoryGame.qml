@@ -3,6 +3,7 @@ import SieluHz
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
 import "MemoryGame.js" as MemoryGame
+import "GameData.js" as GameData
 import timeout 1.0
 
 /**
@@ -29,13 +30,125 @@ Rectangle {
             MemoryGame.setTicks(Timeout.ticks)
             console.log(Timeout.ticks)
             if (MemoryGame.isWon()) {
-                score.text = "    You Won!    "
+                score.text = "  You Won!  "
                 Timeout.stopAllTimers();
+                animationWon.start();
+                MemoryGame.setWonColour(Constants.gold_bg_500);
             } else {
                 var scoreValue = MemoryGame.getScore();
                 var formattedNumber = String(scoreValue).padStart(4, ' ')
                 score.text = "  Score: " + formattedNumber + "  "
             }
+        }
+    }
+
+    ParallelAnimation {
+        id: animationNew
+
+        PropertyAction {
+            target: gameScreen
+            property: "color"
+            value: Constants.color_900
+        }
+
+        PropertyAction {
+            target: toolBar
+            property: "color"
+            value: Constants.color_900
+        }
+
+        PropertyAction {
+            target: background
+            property: "color"
+            value: Constants.colorAccent2
+        }
+
+        PropertyAction {
+            target: timer
+            property: "color"
+            value: Constants.colorWhite
+        }
+
+        PropertyAction {
+            target: score
+            property: "color"
+            value: Constants.colorWhite
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "color"
+            value: Constants.color_600
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "color"
+            value: Constants.color_600
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "buttonTextColor"
+            value: Constants.colorWhite
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "buttonTextColor"
+            value: Constants.colorWhite
+        }
+    }
+
+    ParallelAnimation {
+        id: animationWon
+
+        PropertyAction {
+            target: gameScreen
+            property: "color"
+            value: Constants.gold_bg_900
+        }
+
+        PropertyAction {
+            target: background
+            property: "color"
+            value: Constants.gold_bg_500
+        }
+
+        PropertyAction {
+            target: timer
+            property: "color"
+            value: Constants.gold_bg_text_100
+        }
+
+        PropertyAction {
+            target: score
+            property: "color"
+            value: Constants.gold_bg_text_100
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "color"
+            value: Constants.gold_bg_900
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "color"
+            value: Constants.gold_bg_900
+        }
+
+        PropertyAction {
+            target: btnHighScores
+            property: "buttonTextColor"
+            value: Constants.gold_bg_text_100
+        }
+
+        PropertyAction {
+            target: btnNewGame
+            property: "buttonTextColor"
+            value: Constants.gold_bg_text_100
         }
     }
 
@@ -76,6 +189,8 @@ Rectangle {
                     Timeout.initClock();
                     Timeout.initTicks();
                     MemoryGame.startNewGame(background.width, background.height, background)
+                    animationNew.start()
+                    MemoryGame.setWonColour(Constants.colorAccent2);
                 }
             }
 
