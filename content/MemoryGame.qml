@@ -27,7 +27,14 @@ Rectangle {
 
         onTickChanged: {
             MemoryGame.setTicks(Timeout.ticks)
-//            console.log("Ticks : " + Timeout.ticks)
+            console.log(Timeout.ticks)
+            if (MemoryGame.isWon()) {
+                score.text = "    You Won!    "
+            } else {
+                var scoreValue = MemoryGame.getScore();
+                var formattedNumber = String(scoreValue).padStart(4, ' ')
+                score.text = "  Score: " + formattedNumber + "  "
+            }
         }
     }
 
@@ -99,7 +106,7 @@ Rectangle {
                 antialiasing: true
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right
-        }
+            }
         }  // RowLayout
     }  // ColumnLayout
 }  // Rectangle

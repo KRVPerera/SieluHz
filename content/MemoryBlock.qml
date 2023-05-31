@@ -13,27 +13,46 @@ Rectangle {
         color: "#004D40"
     }
     radius: 10
-
+    antialiasing: true
     property bool isActive: false
     property bool isSolved: false
     property int newIndex: -1
     property int imgId: -1
     property string activeImage: "resources/pics/tile.png"
+    readonly property string frameImage: "resources/pics/frame.png"
+    readonly property string solvedImage: "resources/pics/square.png"
 
     onClicked: {
         if (block.state === 'SOLVED') {
+            mouseArea.enabled = false;
             return
         }
 
+        var initialState = block.state;
+
+
         if (MemoryGame.handleClick(newIndex, imgId)) {
-            if (block.state === '') {
-                block.state = "ACTIVE"
-            } else if (block.state === 'ACTIVE') {
-                block.state = "INIT"
-            } else if (block.state === 'INIT') {
-                block.state = "ACTIVE"
+            var newState = block.state;
+            if (newState !== "SOLVED") {
+                if (initialState === 'INIT') {
+                    block.state = "ACTIVE";
+                    animationActivate.start();
+                } else if (initialState === "ACTIVE") {
+                    block.state = "INIT";
+                    animationDeactiavate.start();
+                } else if (initialState === newState) {
+                    animationFrameToActiveToFrame.start();
+                }
+            } else if (newState === "SOLVED") {
+                animationSolve.start();
+            }
+        } else {
+            var newState = block.state;
+            if (newState!== "SOLVED" && initialState === newState) {
+                animationFrameToActiveToFrame.start();
             }
         }
+
         console.log(block.state)
     }
 
@@ -43,8 +62,64 @@ Rectangle {
         source: "resources/pics/frame.png"
     }
 
+    SequentialAnimation {
+        id: animationSolve
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.activeImage
+        }
+
+        PauseAnimation { duration: 500 }
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.solvedImage
+        }
+    }
+
+    SequentialAnimation {
+        id: animationActivate
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.activeImage
+        }
+    }
+
+    SequentialAnimation {
+        id: animationDeactiavate
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.frameImage
+        }
+    }
+
+    SequentialAnimation {
+        id: animationFrameToActiveToFrame
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.activeImage
+        }
+
+        PauseAnimation { duration: 500 }
+
+        PropertyAction {
+            target: img
+            property: "source"
+            value: block.frameImage
+        }
+    }
+
     MouseArea {
-        id: mouse
+        id: mouseArea
         anchors.fill: parent
         anchors.margins: -5
         onClicked: block.clicked()
@@ -55,14 +130,14 @@ Rectangle {
             name: "INIT"
             PropertyChanges {
                 target: img
-                source: "resources/pics/frame.png"
+                source: block.frameImage
             }
         },
         State {
             name: "SOLVED"
             PropertyChanges {
                 target: img
-                source: "resources/pics/square.png"
+                source: block.solvedImage
             }
         },
         State {
@@ -73,4 +148,14 @@ Rectangle {
             }
         }
     ]
+
+    transitions: Transition {
+        NumberAnimation {
+            target: block
+            property: "state"
+            duration: 500
+        }
+    }
+
+    state : "INIT"
 }

@@ -146,6 +146,27 @@ const dataArray = [
   },
 ];
 
+//const dataArray = [
+//  {
+//    name: "alarm",
+//    img: "resources/pics/im1.png",
+//    imgId: 1,
+//  },
+//  {
+//    name: "book",
+//    img: "resources/pics/book.png",
+//    imgId: 2,
+//  }
+//];
+
+//const dataArray = [
+//  {
+//    name: "alarm",
+//    img: "resources/pics/im1.png",
+//    imgId: 1,
+//  }
+//];
+
 var cardArray = duplicateCards();
 
 function handleClick(newIndex, imgId) {
@@ -204,6 +225,7 @@ function checkForMatch() {
   if (optionOneImageId === optionTwoImageId) {
     firstCard.state = "SOLVED";
     secondCard.state = "SOLVED";
+    scoreValue += 1;
     cardsWon.push(optionTwoImageId);
   } else {
     firstCard.state = "INIT";
@@ -240,6 +262,14 @@ function startNewGame(backgroundWidth, backgroundHeight, background) {
   initializeGameTiles(background);
 }
 
+function getScore() {
+  return scoreValue;
+}
+
+function isWon() {
+    return won;
+}
+
 function redraw(backgroundWidth, backgroundHeight) {
   calculateBoadSizes(backgroundWidth, backgroundHeight);
   redrawBlocks();
@@ -266,6 +296,7 @@ function setupGameData() {
   cardArray.sort(() => 0.5 - Math.random());
   resetDataStructures();
   cardsWon = [];
+  scoreValue = 0;
 }
 
 function duplicateCards() {
