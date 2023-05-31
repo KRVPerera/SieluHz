@@ -27,7 +27,7 @@ Rectangle {
 
         onTickChanged: {
             MemoryGame.setTicks(Timeout.ticks)
-            console.log("Ticks : " + Timeout.ticks)
+//            console.log("Ticks : " + Timeout.ticks)
         }
     }
 

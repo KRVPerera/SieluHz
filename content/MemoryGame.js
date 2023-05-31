@@ -183,10 +183,6 @@ function handleClick(newIndex, imgId) {
   console.log(imagesChosen);
   if (imagesChosen.length === 2) {
     isFlipping = true;
-    timer = 0;
-    while (timer <= 100) {
-        timer++;
-    }
     if (!checkForMatch()) {
         isFlipping = false;
         return false;
@@ -206,12 +202,12 @@ function checkForMatch() {
     resetDataStructures();
     scoreValue = cardsWon.length;
   if (optionOneImageId === optionTwoImageId) {
-    firstCard.isSolved = true;
-    secondCard.isSolved = true;
+    firstCard.state = "SOLVED";
+    secondCard.state = "SOLVED";
     cardsWon.push(optionTwoImageId);
   } else {
-    firstCard.isActive = false;
-    secondCard.isActive = false;
+    firstCard.state = "INIT";
+    secondCard.state = "INIT";
     return false;
   }
 
