@@ -1,27 +1,27 @@
 .pragma library
-var blockWidth = 100;
-var blockHeight = 100;
-var maxColumn = 3;
-var maxRow = 5;
-var maxIndex = maxColumn * maxRow;
-var board = new Array(maxIndex);
-var component;
-var leftAndRightScreenPadding = 20;
-var topAndBottomScreenPadding = 20;
+var blockWidth = 100
+var blockHeight = 100
+var maxColumn = 3
+var maxRow = 5
+var maxIndex = maxColumn * maxRow
+var board = new Array(maxIndex)
+var component
+var leftAndRightScreenPadding = 20
+var topAndBottomScreenPadding = 20
 
-const tilesPerRow = 6;
-const tilesPerColumn = 8;
-const columnGridSize = 68;
-const rowGridSize = 90;
+const tilesPerRow = 6
+const tilesPerColumn = 8
+const columnGridSize = 68
+const rowGridSize = 90
 
-var imagesChosen = [];
-var cardsChosenId = [];
-var cardsWon = [];
-var isFlipping = false;
-var prevCardId = -1;
-var scoreValue = 0;
-var won = false;
-var timer = 0;
+var imagesChosen = []
+var cardsChosenId = []
+var cardsWon = []
+var isFlipping = false
+var prevCardId = -1
+var scoreValue = 0
+var won = false
+var timer = 0
 
 //const dataArray = [
 //  {
@@ -158,217 +158,216 @@ var timer = 0;
 //    imgId: 2,
 //  }
 //];
+const dataArray = [{
+                       "name": "alarm",
+                       "img": "resources/pics/im1.png",
+                       "imgId": 1
+                   }]
 
-const dataArray = [
-  {
-    name: "alarm",
-    img: "resources/pics/im1.png",
-    imgId: 1,
-  }
-];
-
-var cardArray = duplicateCards();
+var cardArray = duplicateCards()
 
 function handleClick(newIndex, imgId) {
-  var currentClickedCardId = newIndex;
-  var iamgeId = imgId;
+    var currentClickedCardId = newIndex
+    var iamgeId = imgId
 
-  if (isFlipping) {
-    return false;
-  }
-
-  if (prevCardId === currentClickedCardId) {
-    prevCardId = -1;
-    imagesChosen = [];
-    cardsChosenId = [];
-    return true;
-  }
-
-  prevCardId = currentClickedCardId;
-  cardsChosenId.push(currentClickedCardId);
-  imagesChosen.push(iamgeId);
-
-  if (imagesChosen.length === 2) {
-    isFlipping = true;
-    if (!checkForMatch()) {
-        isFlipping = false;
-        return false;
+    if (isFlipping) {
+        return false
     }
-    isFlipping = false;
-  }
-  return true;
+
+    if (prevCardId === currentClickedCardId) {
+        prevCardId = -1
+        imagesChosen = []
+        cardsChosenId = []
+        return true
+    }
+
+    prevCardId = currentClickedCardId
+    cardsChosenId.push(currentClickedCardId)
+    imagesChosen.push(iamgeId)
+
+    if (imagesChosen.length === 2) {
+        isFlipping = true
+        if (!checkForMatch()) {
+            isFlipping = false
+            return false
+        }
+        isFlipping = false
+    }
+    return true
 }
 
 function checkForMatch() {
-  const optionOneImageId = imagesChosen[0];
-  const optionTwoImageId = imagesChosen[1];
-  var choosenFirstCardId = cardsChosenId[0];
-  var choosenSecondCardId = cardsChosenId[1];
-  var firstCard = board[choosenFirstCardId];
-  var secondCard = board[choosenSecondCardId];
-    resetDataStructures();
-    scoreValue = cardsWon.length;
-  if (optionOneImageId === optionTwoImageId) {
-    firstCard.state = "SOLVED";
-    secondCard.state = "SOLVED";
-    scoreValue += 1;
-    cardsWon.push(optionTwoImageId);
-  } else {
-    firstCard.state = "INIT";
-    secondCard.state = "INIT";
-    return false;
-  }
+    const optionOneImageId = imagesChosen[0]
+    const optionTwoImageId = imagesChosen[1]
+    var choosenFirstCardId = cardsChosenId[0]
+    var choosenSecondCardId = cardsChosenId[1]
+    var firstCard = board[choosenFirstCardId]
+    var secondCard = board[choosenSecondCardId]
+    resetDataStructures()
+    scoreValue = cardsWon.length
+    if (optionOneImageId === optionTwoImageId) {
+        firstCard.state = "SOLVED"
+        secondCard.state = "SOLVED"
+        scoreValue += 1
+        cardsWon.push(optionTwoImageId)
+    } else {
+        firstCard.state = "INIT"
+        secondCard.state = "INIT"
+        return false
+    }
 
-  //   score.text = cardsWon.length;
-  if (cardsWon.length === cardArray.length / 2) {
-    won = true;
-    console.log("Congratulations! You found them all");
-  }
-  return true;
+    //   score.text = cardsWon.length;
+    if (cardsWon.length === cardArray.length / 2) {
+        won = true
+        console.log("Congratulations! You found them all")
+    }
+    return true
 }
 
 function index(column, row) {
-  return column + row * maxColumn;
+    return column + row * maxColumn
 }
 
 function setTicks(ticks) {
-  timer = ticks;
+    timer = ticks
 }
 
 function resetDataStructures() {
-    prevCardId = -1;
-    imagesChosen = [];
-    cardsChosenId = [];
+    prevCardId = -1
+    imagesChosen = []
+    cardsChosenId = []
 }
 
 function startNewGame(backgroundWidth, backgroundHeight, background) {
-  setupGameData();
-  cleanBoard();
-  calculateBoadSizes(backgroundWidth, backgroundHeight);
-  initializeGameTiles(background);
+    setupGameData()
+    cleanBoard()
+    calculateBoadSizes(backgroundWidth, backgroundHeight)
+    initializeGameTiles(background)
 }
 
 function getScore() {
-  return scoreValue;
+    return scoreValue
 }
 
 function isWon() {
-    return won;
+    return won
 }
 
 function setWonColour(colorValue) {
-    for (let i = 0; i < board.length; i++) {
-      var card = board[i];
-      card.cardBackGroundColor = colorValue;
+    for (var i = 0; i < board.length; i++) {
+        var card = board[i]
+        card.cardBackGroundColor = colorValue
     }
 }
 
 function redraw(backgroundWidth, backgroundHeight) {
-  calculateBoadSizes(backgroundWidth, backgroundHeight);
-  redrawBlocks();
+    calculateBoadSizes(backgroundWidth, backgroundHeight)
+    redrawBlocks()
 }
 
 function flipCardFunction() {
-  this.isActive = !this.isActive;
-  console.log("Cliked imgId : ", this.imgId, " ID: ", this.dataId);
+    this.isActive = !this.isActive
+    console.log("Cliked imgId : ", this.imgId, " ID: ", this.dataId)
 }
 
 function redrawBlocks() {
-  for (var column = 0; column < maxColumn; column++) {
-    for (var row = 0; row < maxRow; row++) {
-      var indexVal = index(column, row);
-      if (indexVal >= cardArray.length) {
-        break;
-      }
-      redrawBlock(column, row, indexVal);
+    for (var column = 0; column < maxColumn; column++) {
+        for (var row = 0; row < maxRow; row++) {
+            var indexVal = index(column, row)
+            if (indexVal >= cardArray.length) {
+                break
+            }
+            redrawBlock(column, row, indexVal)
+        }
     }
-  }
 }
 
 function setupGameData() {
-  cardArray.sort(() => 0.5 - Math.random());
-  resetDataStructures();
-  cardsWon = [];
-  scoreValue = 0;
-  won = false;
+    cardArray.sort(() => 0.5 - Math.random())
+    resetDataStructures()
+    cardsWon = []
+    scoreValue = 0
+    won = false
 }
 
 function duplicateCards() {
-  return dataArray.concat(dataArray.slice());
+    return dataArray.concat(dataArray.slice())
 }
 
 function initializeGameTiles(background) {
-  board = new Array(cardArray.length);
+    board = new Array(cardArray.length)
 
-  for (var column = 0; column < maxColumn; column++) {
-    for (var row = 0; row < maxRow; row++) {
-      var indexVal = index(column, row);
-      if (indexVal >= cardArray.length) {
-        break;
-      }
-      board[indexVal] = null;
-      var card = cardArray[indexVal];
-      createBlock(column, row, card.img, indexVal, card.imgId, background);
+    for (var column = 0; column < maxColumn; column++) {
+        for (var row = 0; row < maxRow; row++) {
+            var indexVal = index(column, row)
+            if (indexVal >= cardArray.length) {
+                break
+            }
+            board[indexVal] = null
+            var card = cardArray[indexVal]
+            createBlock(column, row, card.img, indexVal, card.imgId, background)
+        }
     }
-  }
 }
 
 function calculateBoadSizes(backgroundWidth, backgroundHeight) {
-  var candidateLeftScreenPadding = backgroundWidth / columnGridSize;
-  var candidateTopScreenPadding = backgroundHeight / rowGridSize;
-  var candidateBlockWidth = Math.floor(candidateLeftScreenPadding * ((columnGridSize - 2) / tilesPerRow));
-  var candidateBlockHeight = Math.floor(candidateTopScreenPadding * ((rowGridSize - 2) / tilesPerColumn));
-  var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight);
+    var candidateLeftScreenPadding = backgroundWidth / columnGridSize
+    var candidateTopScreenPadding = backgroundHeight / rowGridSize
+    var candidateBlockWidth = Math.floor(
+                candidateLeftScreenPadding * ((columnGridSize - 2) / tilesPerRow))
+    var candidateBlockHeight = Math.floor(
+                candidateTopScreenPadding * ((rowGridSize - 2) / tilesPerColumn))
+    var minimumTileSide = Math.min(candidateBlockWidth, candidateBlockHeight)
 
-  blockWidth = minimumTileSide;
-  blockHeight = minimumTileSide;
-  leftAndRightScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2;
-  topAndBottomScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2;
+    blockWidth = minimumTileSide
+    blockHeight = minimumTileSide
+    leftAndRightScreenPadding = (backgroundWidth - (minimumTileSide * tilesPerRow)) / 2
+    topAndBottomScreenPadding = (backgroundHeight - (minimumTileSide * tilesPerColumn)) / 2
 
-  maxColumn = Math.floor(
-    (backgroundWidth - leftAndRightScreenPadding * 2) / blockWidth
-  );
-  maxRow = Math.floor(
-    (backgroundHeight - topAndBottomScreenPadding * 2) / blockHeight
-  );
-  maxIndex = maxRow * maxColumn;
+    maxColumn = Math.floor(
+                (backgroundWidth - leftAndRightScreenPadding * 2) / blockWidth)
+    maxRow = Math.floor(
+                (backgroundHeight - topAndBottomScreenPadding * 2) / blockHeight)
+    maxIndex = maxRow * maxColumn
 }
 
 function cleanBoard() {
-  for (var i = 0; i < maxIndex; i++) {
-    if (board[i] != null) board[i].destroy();
-  }
+    for (var i = 0; i < maxIndex; i++) {
+        if (board[i] != null)
+            board[i].destroy()
+    }
 }
 
 function redrawBlock(column, row, indexVal) {
-  var card = board[indexVal];
-  if (!card) {
-    return false;
-  }
-  card.x = column * blockWidth + leftAndRightScreenPadding;
-  card.y = row * blockHeight + topAndBottomScreenPadding;
-  card.width = blockWidth;
-  card.height = blockHeight;
-  return true;
+    var card = board[indexVal]
+    if (!card) {
+        return false
+    }
+    card.x = column * blockWidth + leftAndRightScreenPadding
+    card.y = row * blockHeight + topAndBottomScreenPadding
+    card.width = blockWidth
+    card.height = blockHeight
+    return true
 }
 
 function createBlock(column, row, imagePath, indexVal, imgId, background) {
-  if (component == null) component = Qt.createComponent("MemoryBlock.qml");
+    if (component == null)
+        component = Qt.createComponent("MemoryBlock.qml")
 
-  var dynamicObject = component.createObject(background);
-  if (dynamicObject == null) {
-    console.log("error creating block");
-    console.log(component.errorString());
-    return false;
-  }
-  dynamicObject.x = column * blockWidth + leftAndRightScreenPadding;
-  dynamicObject.y = row * blockHeight + topAndBottomScreenPadding;
-  dynamicObject.width = blockWidth;
-  dynamicObject.height = blockHeight;
-  dynamicObject.activeImage = imagePath;
-  dynamicObject.newIndex = indexVal;
-  dynamicObject.imgId = imgId;
-  board[indexVal] = dynamicObject;
+    var dynamicObject = component.createObject(background)
+    if (dynamicObject == null) {
+        console.log("error creating block")
+        console.log(component.errorString())
+        return false
+    }
+    dynamicObject.x = column * blockWidth + leftAndRightScreenPadding
+    dynamicObject.y = row * blockHeight + topAndBottomScreenPadding
+    dynamicObject.width = blockWidth
+    dynamicObject.height = blockHeight
+    dynamicObject.activeImage = imagePath
+    dynamicObject.newIndex = indexVal
+    dynamicObject.imgId = imgId
+    board[indexVal] = dynamicObject
 
-  return true;
+    return true
 }
