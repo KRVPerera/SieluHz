@@ -28,7 +28,6 @@ Rectangle {
 
         onTickChanged: {
             MemoryGame.setTicks(Timeout.ticks)
-            console.log(Timeout.ticks)
             if (MemoryGame.isWon()) {
                 score.text = "  You Won!  "
                 Timeout.stopAllTimers();
@@ -47,12 +46,6 @@ Rectangle {
 
         PropertyAction {
             target: gameScreen
-            property: "color"
-            value: Constants.color_900
-        }
-
-        PropertyAction {
-            target: toolBar
             property: "color"
             value: Constants.color_900
         }
@@ -192,6 +185,15 @@ Rectangle {
                     animationNew.start()
                     MemoryGame.setWonColour(Constants.colorAccent2);
                 }
+            }
+
+            Text {
+                id: blank
+                text: " "
+                height: parent.height
+                color: Constants.colorWhite
+                antialiasing: true
+                font.pixelSize: 25
             }
 
             ButtonX {

@@ -173,35 +173,21 @@ function handleClick(newIndex, imgId) {
   var currentClickedCardId = newIndex;
   var iamgeId = imgId;
 
-  console.log(
-    "Cliked imgId : ",
-    iamgeId,
-    " new index : ",
-    currentClickedCardId
-  );
-
-  console.log("isFlipping : ", isFlipping);
   if (isFlipping) {
     return false;
   }
 
   if (prevCardId === currentClickedCardId) {
-    console.log("prevCardId === currentClickedCardId");
     prevCardId = -1;
     imagesChosen = [];
     cardsChosenId = [];
     return true;
   }
 
-  console.log("Need to do check match");
-  console.log(currentClickedCardId);
-  console.log(prevCardId);
   prevCardId = currentClickedCardId;
   cardsChosenId.push(currentClickedCardId);
   imagesChosen.push(iamgeId);
 
-  console.log(cardsChosenId);
-  console.log(imagesChosen);
   if (imagesChosen.length === 2) {
     isFlipping = true;
     if (!checkForMatch()) {
