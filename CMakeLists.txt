@@ -20,7 +20,7 @@ if (WIN32)
     set(app_icon_resource_windows "${CMAKE_CURRENT_SOURCE_DIR}/resources/windows.rc")
     qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp ${app_icon_resource_windows})
 else()
-    qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp timeout/Timeout.h)   
+    qt_add_executable(${CMAKE_PROJECT_NAME} src/main.cpp)
 endif()
 
 # qt_standard_project_setup() requires Qt 6.3 or higher. See https://doc.qt.io/qt-6/qt-standard-project-setup.html for details.

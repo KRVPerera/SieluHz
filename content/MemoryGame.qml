@@ -3,9 +3,9 @@ import SieluHz
 import QtQuick.Layouts
 import QtQuick.Controls 6.2
 import "MemoryGame.js" as MemoryGame
-import "GameData.js" as GameData
 import timeout 1.0
-
+import QtQuick.LocalStorage
+//import GameData
 
 /**
   * This is taken from QML examples
@@ -230,6 +230,30 @@ Rectangle {
                 text: "High Scores"
                 onClicked: console.log("This is blank")
             }
+
+//            ButtonX {
+//                id: createData
+//                text: "Create Data"
+//                onClicked: {
+//                    databaseSingleton.openDatabase()
+//                }
+//            }
+
+//            ButtonX {
+//                id: addData
+//                text: "Add Data"
+//                onClicked: {
+//                     databaseSingleton.addData()
+//                }
+//            }
+
+//            ButtonX {
+//                id: fetchData
+//                text: "Fetch  Data"
+//                onClicked: {
+//                    databaseSingleton.fetchData()
+//                }
+//            }
 
             Item {
                 Layout.fillWidth: true
