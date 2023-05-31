@@ -33,7 +33,6 @@ int main(int argc, char *argv[])
         Qt::QueuedConnection);
 
     qmlRegisterSingletonType<Timeout>("timeout", 1, 0, "Timeout", &Timeout::create);
-    // qmlRegisterTypesAndRevisions<Timeout>("Timeout", 1);
 
     engine.addImportPath(QCoreApplication::applicationDirPath() + "/qml");
     engine.addImportPath(":/");
