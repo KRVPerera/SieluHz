@@ -6,6 +6,7 @@ import "MemoryGame.js" as MemoryGame
 import "GameData.js" as GameData
 import timeout 1.0
 
+
 /**
   * This is taken from QML examples
   * QT - QML Advanced Tutorial 1,2,3,4
@@ -16,7 +17,9 @@ Rectangle {
     anchors.fill: parent
     Layout.fillWidth: true
 
-    SystemPalette { id: activePalette }
+    SystemPalette {
+        id: activePalette
+    }
 
     Connections {
         target: Timeout
@@ -30,11 +33,11 @@ Rectangle {
             MemoryGame.setTicks(Timeout.ticks)
             if (MemoryGame.isWon()) {
                 score.text = "  You Won!  "
-                Timeout.stopAllTimers();
-                animationWon.start();
-                MemoryGame.setWonColour(Constants.gold_bg_500);
+                Timeout.stopAllTimers()
+                animationWon.start()
+                MemoryGame.setWonColour(Constants.gold_bg_500)
             } else {
-                var scoreValue = MemoryGame.getScore();
+                var scoreValue = MemoryGame.getScore()
                 var formattedNumber = String(scoreValue).padStart(4, ' ')
                 score.text = "  Score: " + formattedNumber + "  "
             }
@@ -158,10 +161,11 @@ Rectangle {
             Layout.fillHeight: true
             // anchors.margins: 0
             // anchors.centerIn: parent
-            property bool flipping: true;
+            property bool flipping: true
 
             onWidthChanged: {
-                MemoryGame.redraw(background.width, background.height, background)
+                MemoryGame.redraw(background.width, background.height,
+                                  background)
             }
 
             onHeightChanged: {
@@ -178,12 +182,13 @@ Rectangle {
                 id: btnNewGame
                 text: "New Game"
                 onClicked: {
-                    Timeout.clock = 0;
-                    Timeout.initClock();
-                    Timeout.initTicks();
-                    MemoryGame.startNewGame(background.width, background.height, background)
+                    Timeout.clock = 0
+                    Timeout.initClock()
+                    Timeout.initTicks()
+                    MemoryGame.startNewGame(background.width,
+                                            background.height, background)
                     animationNew.start()
-                    MemoryGame.setWonColour(Constants.colorAccent2);
+                    MemoryGame.setWonColour(Constants.colorAccent2)
                 }
             }
 
@@ -225,6 +230,6 @@ Rectangle {
                 font.pixelSize: 25
                 anchors.right: gameScreen.Right
             }
-        }  // RowLayout
-    }  // ColumnLayout
-}  // Rectangle
+        } // RowLayout
+    } // ColumnLayout
+} // Rectangle
