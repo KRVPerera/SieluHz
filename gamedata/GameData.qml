@@ -20,16 +20,6 @@ QtObject {
         }
     }
 
-//    function addData() {
-//        if (db === null) {
-//            db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)
-//        }
-//        db.transaction(function(tx) {
-//            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["John Doe", 30])
-//            tx.executeSql('INSERT INTO employees VALUES(?, ?)', ["Rukshan Perera", 25])
-//        })
-//    }
-
     function addData(name, score) {
         if (db === null) {
             db = LocalStorage.openDatabaseSync(dB_NAME, dB_VERSION, dB_DESCRIPTION, 1000000)

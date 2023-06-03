@@ -36,6 +36,8 @@ Rectangle {
                 Timeout.stopAllTimers()
                 animationWon.start()
                 MemoryGame.setWonColour(Constants.gold_bg_500)
+                nameInputDialog.score = MemoryGame.getScore()
+                nameInputDialog.showAndFocus()
             } else {
                 var scoreValue = MemoryGame.getScore()
                 var formattedNumber = String(scoreValue).padStart(4, ' ')
@@ -172,6 +174,18 @@ Rectangle {
         }
     }
 
+    UserNameDialog {
+        id: nameInputDialog
+        anchors.centerIn: parent
+        z: 100
+    }
+
+    HighscoreDialog {
+        id: highscores
+        anchors.centerIn: parent
+        z: 200
+    }
+
     ColumnLayout {
         anchors.fill: parent
         Layout.fillWidth: true
@@ -183,8 +197,6 @@ Rectangle {
             height: 360
             Layout.fillWidth: true
             Layout.fillHeight: true
-            // anchors.margins: 0
-            // anchors.centerIn: parent
             property bool flipping: true
 
             onWidthChanged: {
@@ -229,34 +241,8 @@ Rectangle {
             ButtonX {
                 id: btnHighScores
                 text: "High Scores"
-                onClicked: console.log("This is blank")
-            }
-
-            ButtonX {
-                id: addData
-                text: "Add Data"
                 onClicked: {
-                    GameData.addData("asdad", 0)
-                    GameData.addData("dummy data", 0)
-                    GameData.addData("1", 1)
-                    GameData.addData("2", 2)
-                    GameData.addData("3", 3)
-                    GameData.addData("4", 4)
-                    GameData.addData("5", 5)
-                    GameData.addData("6", 6)
-                    GameData.addData("7", 7)
-                    GameData.addData("8", 8)
-                    GameData.addData("9", 9)
-                    GameData.addData("10", 10)
-                    GameData.addData("11", 11)
-                }
-            }
-
-            ButtonX {
-                id: fetchData
-                text: "Fetch  Data"
-                onClicked: {
-                    GameData.fetchData()
+                    highscores.showAndFocus()
                 }
             }
 

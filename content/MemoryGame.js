@@ -146,24 +146,24 @@ var timer = 0
 //  },
 //];
 
-//const dataArray = [
-//  {
-//    name: "alarm",
-//    img: "resources/pics/im1.png",
-//    imgId: 1,
-//  },
-//  {
-//    name: "book",
-//    img: "resources/pics/book.png",
-//    imgId: 2,
-//  }
-//];
+const dataArray = [
+  {
+    name: "alarm",
+    img: "resources/pics/im1.png",
+    imgId: 1,
+  },
+  {
+    name: "book",
+    img: "resources/pics/book.png",
+    imgId: 2,
+  }
+];
 
-const dataArray = [{
-                       "name": "alarm",
-                       "img": "resources/pics/im1.png",
-                       "imgId": 1
-                   }]
+//const dataArray = [{
+//                       "name": "alarm",
+//                       "img": "resources/pics/im1.png",
+//                       "imgId": 1
+//                   }]
 
 var cardArray = duplicateCards()
 
@@ -217,7 +217,6 @@ function checkForMatch() {
         return false
     }
 
-    //   score.text = cardsWon.length;
     if (cardsWon.length === cardArray.length / 2) {
         won = true
         console.log("Congratulations! You found them all")
