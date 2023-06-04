@@ -19,11 +19,9 @@ Rectangle {
     anchors.fill: parent
 
     ColumnLayout {
-        //        width: 620
         Layout.fillWidth: true
         Layout.fillHeight: true
         spacing: 1
-        //        anchors.centerIn: parent
         anchors.bottomMargin: 5
         anchors.fill: parent
         antialiasing: true
@@ -47,15 +45,36 @@ Rectangle {
         }
 
         RoundButton {
+            id: loadButton
             text: "Load File"
             Layout.alignment: Qt.AlignCenter
-            //            Layout.fillWidth: true
             Layout.preferredWidth: 400
             Layout.preferredHeight: 100
 
             onClicked: {
-                // Update the text in the resultText
                 fileContentText.text = loadFileFromAssets("assets:/cutter.txt")
+            }
+
+            contentItem: Text {
+                text: loadButton.text
+                opacity: enabled ? 1.0 : 0.3
+                color: saveButton.down ? buttonTextColor : buttonTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                font.pointSize: 15
+            }
+
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                color: saveButton.down ? buttonPressedColor : buttonColor
+                border {
+                    width: 2
+                    color: Qt.darker(activePalette.button)
+                }
+                antialiasing: true
+                radius: 20
             }
         }
     }

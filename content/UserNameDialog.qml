@@ -15,6 +15,8 @@ Dialog {
     property color buttonTextColor: Constants.gold_bg_text_100
     property color buttonColor: Constants.gold_bg_900
     property color buttonPressedColor: Constants.gold_bg_100
+    property double fontPointSize: Constants.fontPointSize
+    property double fontHeaderPointSize: Constants.fontHeaderPointSize
 
     onAccepted: {
         console.log("Saving the score : ", String(score).padStart(4, ' '))
@@ -49,13 +51,14 @@ Dialog {
     header: Rectangle {
         id: headerTitle
         implicitWidth: 400
-        implicitHeight: 50
+        implicitHeight: 100
         color: Constants.gold_bg_900
         Text {
             antialiasing: true
             color: Constants.gold_bg_text_100
             text: qsTr("Congratulations !")
             anchors.centerIn: parent
+            font.pointSize: fontHeaderPointSize
         }
     }
 
@@ -63,7 +66,6 @@ Dialog {
         id: dialogContent
         implicitWidth: 400
         implicitHeight: 80
-        anchors.fill: parent
         color: Constants.gold_bg_700
 
         Text {
@@ -71,7 +73,12 @@ Dialog {
             antialiasing: true
             color: Constants.gold_bg_text_100
             text: qsTr("What is your name?")
-            anchors.centerIn: parent
+            anchors {
+                top: headerTitle.bottom
+                left: headerTitle.left
+//                bottom: textInput.top
+            }
+            font.pointSize: fontPointSize
         }
 
         TextInput {
@@ -85,6 +92,7 @@ Dialog {
             cursorVisible: true
             font.capitalization: Font.SmallCaps
             onAccepted: userNameDialog.accept()
+            font.pointSize: fontPointSize
         }
     }
 
@@ -97,8 +105,8 @@ Dialog {
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
 
             contentItem: Text {
+                font.pointSize: fontPointSize
                 text: saveButton.text
-                font: saveButton.font
                 opacity: enabled ? 1.0 : 0.3
                 color: saveButton.down ? buttonTextColor : buttonTextColor
                 horizontalAlignment: Text.AlignHCenter
@@ -124,8 +132,8 @@ Dialog {
             DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
 
             contentItem: Text {
+                font.pointSize: fontPointSize
                 text: closeButton.text
-                font: closeButton.font
                 opacity: enabled ? 1.0 : 0.3
                 color: closeButton.down ? buttonTextColor : buttonTextColor
                 horizontalAlignment: Text.AlignHCenter

@@ -19,6 +19,8 @@ Dialog {
     property color buttonTextColor: Constants.gold_bg_text_100
     property color buttonColor: Constants.gold_bg_900
     property color buttonPressedColor: Constants.gold_bg_100
+    property double fontPointSize: Constants.fontPointSize
+    property double fontHeaderPointSize: Constants.fontHeaderPointSize
 
     onAccepted: {
         console.log("Exit high scores")
@@ -26,10 +28,11 @@ Dialog {
 
     onReset: {
         GameData.cleanData()
+        tableData = []
     }
 
-    width: 420
-    height: 500
+    width: parent.width * 11 / 12
+    height: parent.height * 10 / 12
 
     function showAndFocus() {
         visible = true
@@ -42,26 +45,32 @@ Dialog {
 
     header: Rectangle {
         id: headerTitle
-        implicitWidth: 400
-        implicitHeight: 50
+        implicitWidth: parent.width * 11 / 12
+        implicitHeight: parent.height * 2 / 12
         color: Constants.gold_bg_900
         Text {
             antialiasing: true
             color: Constants.gold_bg_text_100
             text: qsTr("High Scores")
             anchors.centerIn: parent
+            font.pointSize: fontHeaderPointSize
         }
     }
 
     contentItem: Rectangle {
         id: dialogContent
-        anchors.centerIn: parent
+        anchors {
+            top: headerTitle.bottom
+            left: headerTitle.left
+        }
         color: Constants.gold_bg_300
+        implicitWidth: parent.width * 11 / 12
+        implicitHeight: parent.height * 6 / 12
 
         TableView {
             id: tableView
             anchors.fill: parent
-            columnSpacing: 0
+            columnSpacing: 1
             rowSpacing: 0
             model: TableModel {
                 id: tableModel
@@ -86,6 +95,7 @@ Dialog {
                     text: display
                     anchors.centerIn: parent
                     color: Constants.gold_bg_text_100
+                    font.pointSize: fontPointSize
                 }
             }
         }
@@ -94,6 +104,8 @@ Dialog {
     footer: DialogButtonBox {
         id: footerButtons
         buttonLayout: DialogButtonBox.AndroidLayout
+        implicitWidth: parent.width * 11 / 12
+        implicitHeight: parent.height * 1 / 12
         Button {
             id: okButton
             text: qsTr("Ok")
@@ -101,8 +113,8 @@ Dialog {
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
 
             contentItem: Text {
+                font.pointSize: fontPointSize
                 text: okButton.text
-                font: okButton.font
                 opacity: enabled ? 1.0 : 0.3
                 color: okButton.down ? buttonTextColor : buttonTextColor
                 horizontalAlignment: Text.AlignHCenter
@@ -129,8 +141,8 @@ Dialog {
             DialogButtonBox.buttonRole: DialogButtonBox.ResetRole
 
             contentItem: Text {
+                font.pointSize: fontPointSize
                 text: resetButton.text
-                font: resetButton.font
                 opacity: enabled ? 1.0 : 0.3
                 color: resetButton.down ? buttonTextColor : buttonTextColor
                 horizontalAlignment: Text.AlignHCenter

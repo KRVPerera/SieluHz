@@ -15,7 +15,8 @@ Rectangle {
     id: gameScreen
     color: Constants.color_900
     anchors.fill: parent
-    Layout.fillWidth: true
+
+    property double fontPointSize: Constants.fontPointSize
 
     SystemPalette {
         id: activePalette
@@ -25,19 +26,19 @@ Rectangle {
         target: Timeout
 
         onClockChanged: {
-            var formattedNumber = String(Timeout.clock).padStart(4, ' ')
-            timer.text = "Time : " + formattedNumber + "  "
+            var formattedNumber = String(Timeout.clock).padStart(3, ' ')
+            timer.text = " Time : " + formattedNumber + "  "
             MemoryGame.setClock(Timeout.clock)
         }
 
         onTickChanged: {
             MemoryGame.setTicks(Timeout.ticks)
             var scoreValue = MemoryGame.getScore()
-            var formattedNumber = String(scoreValue).padStart(4, ' ')
-            score.text = "  Score: " + formattedNumber + "  "
+            var formattedNumber = String(scoreValue).padStart(3, ' ')
+            score.text = " Score: " + formattedNumber + "  "
             if (MemoryGame.isWon()) {
                 Timeout.stopAllTimers()
-                 score.text = "  Winning Score: " + formattedNumber + "  "
+                 score.text = " Score: " + formattedNumber + "  "
                 animationWon.start()
                 MemoryGame.setWonColour(Constants.gold_bg_500)
                 nameInputDialog.score = MemoryGame.getScore()
@@ -140,13 +141,13 @@ Rectangle {
         PropertyAction {
             target: btnNewGame
             property: "buttonColor"
-            value: Constants.gold_bg_900
+            value: Constants.gold_bg_700
         }
 
         PropertyAction {
             target: btnHighScores
             property: "buttonColor"
-            value: Constants.gold_bg_900
+            value: Constants.gold_bg_700
         }
 
         PropertyAction {
@@ -197,7 +198,6 @@ Rectangle {
             height: 360
             Layout.fillWidth: true
             Layout.fillHeight: true
-            property bool flipping: true
 
             onWidthChanged: {
                 MemoryGame.redraw(background.width, background.height,
@@ -211,7 +211,6 @@ Rectangle {
 
         RowLayout {
             id: toolBar
-            height: parent.height - background.height
             spacing: 0
 
             ButtonX {
@@ -235,7 +234,7 @@ Rectangle {
                 height: parent.height
                 color: Constants.colorWhite
                 antialiasing: true
-                font.pixelSize: 25
+                font.pointSize: fontPointSize
             }
 
             ButtonX {
@@ -257,17 +256,17 @@ Rectangle {
                 height: parent.height
                 color: Constants.colorWhite
                 antialiasing: true
-                font.pixelSize: 25
+                font.pointSize: fontPointSize
                 anchors.right: gameScreen.Right
             }
 
             Text {
                 id: score
-                text: "  Score: 0    "
+                text: " Score: 0 "
                 height: parent.height
                 color: Constants.colorWhite
                 antialiasing: true
-                font.pixelSize: 25
+                font.pointSize: fontPointSize
                 anchors.right: gameScreen.Right
             }
         } // RowLayout

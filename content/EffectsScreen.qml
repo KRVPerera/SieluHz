@@ -7,44 +7,64 @@ Rectangle {
     id: effectRectangle
     color: Constants.color_50
     anchors.fill: parent
-    anchors.margins: 0
-    Layout.fillWidth: true
-    Layout.fillHeight: true
 
     ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
-        spacing: 2
-        anchors.centerIn: parent
+        spacing: 1
+        anchors.bottomMargin: 5
+        anchors.fill: parent
+        antialiasing: true
         Layout.alignment: Qt.AlignCenter
 
         Text {
             text: "@string/CUTTER_MESSAGE"
             wrapMode: Text.Wrap
             antialiasing: true
-            font.pixelSize: 60
+            font.pixelSize: 30
             Layout.alignment: Qt.AlignCenter
         }
 
         Text {
-            id: fileContentText
-            text: ""
+            id: stringContent
+            text: qsTr("CUTTER_MESSAGE")
             wrapMode: Text.Wrap
             antialiasing: true
-            font.pixelSize: 50
+            font.pixelSize: 30
             Layout.alignment: Qt.AlignCenter
         }
 
         RoundButton {
-            text: "Load String resource with key : CUTTER_MESSAGE"
+            id: loadStringButton
+            text: "Load String"
             Layout.alignment: Qt.AlignCenter
-            //            Layout.fillWidth: true
             Layout.preferredWidth: 400
             Layout.preferredHeight: 100
 
             onClicked: {
-                // Update the text in the resultText
-                fileContentText.text = loadFileFromAssets("res/values:/cutter.xml")
+                stringContent.text = loadFileFromAssets("res/values:/cutter.xml")
+            }
+
+            contentItem: Text {
+                text: loadStringButton.text
+                opacity: enabled ? 1.0 : 0.3
+                color: saveButton.down ? buttonTextColor : buttonTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+                font.pointSize: 15
+            }
+
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                color: saveButton.down ? buttonPressedColor : buttonColor
+                border {
+                    width: 2
+                    color: Qt.darker(activePalette.button)
+                }
+                antialiasing: true
+                radius: 20
             }
         }
     }

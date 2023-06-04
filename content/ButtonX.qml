@@ -11,10 +11,11 @@ Rectangle {
     width: buttonLabel.width + 20; height: buttonLabel.height + 10
     border { width: 2; color: Qt.darker(activePalette.button) }
     antialiasing: true
-    radius: 20
+    radius: 30
     property color buttonTextColor: Constants.colorWhite
     property color buttonColor: Constants.color_600
     property color buttonPressedColor: Constants.colorAccent2
+    property double fontPointSize: Constants.fontPointSize
 
     color: {
                 if (mouseArea.pressed)
@@ -32,6 +33,7 @@ Rectangle {
     Text {
         id: buttonLabel
         anchors.centerIn: container
+        font.pointSize: fontPointSize
         color: {
                 if (mouseArea.pressed)
                     return Constants.colorBlack

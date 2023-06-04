@@ -49,4 +49,6 @@ QtObject {
     readonly property color gold_bg_text_500: "#5C5346"
     readonly property color gold_bg_text_900: "#FFFFF0"
 
+    readonly property double fontPointSize: 15
+    readonly property double fontHeaderPointSize: 20
 }

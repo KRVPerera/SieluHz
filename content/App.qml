@@ -48,8 +48,8 @@ Window {
 
             Pane {
                 padding: 0
-                Screen01 {
-                    id: mainScreen
+                LoadedFile {
+                    id: loadFile
                 }
             }
 
@@ -62,8 +62,8 @@ Window {
 
             Pane {
                 padding: 0
-                LoadedFile {
-                    id: loadFile
+                Screen01 {
+                    id: mainScreen
                 }
             }
         }
