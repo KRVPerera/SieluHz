@@ -20,12 +20,6 @@ QtObject {
 
     readonly property color backgroundColor: "#c2c2c2"
 
-
-//    property StudioApplication application: StudioApplication {
-//        fontPath: Qt.resolvedUrl("../../content/" + relativeFontDirectory)
-//    }
-
-
     readonly property color colorPrimary: "#009688"
     readonly property color colorAccent1: "#A7FFEB"
     readonly property color colorAccent2: "#64FFDA"

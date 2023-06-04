@@ -27,6 +27,7 @@ Rectangle {
         onClockChanged: {
             var formattedNumber = String(Timeout.clock).padStart(4, ' ')
             timer.text = "Time : " + formattedNumber + "  "
+            MemoryGame.setClock(Timeout.clock)
         }
 
         onTickChanged: {

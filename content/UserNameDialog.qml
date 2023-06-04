@@ -21,12 +21,12 @@ Dialog {
         GameData.addData(inputText, score)
         highscores.tableData = GameData.fetchData()
         highscores.showAndFocus()
-        reset();
+        reset()
     }
 
     onRejected: {
         console.log("Cancel clicked")
-        reset();
+        reset()
     }
 
     width: Math.max(userNameQuestion.width, textInput.width) + 100
@@ -37,7 +37,7 @@ Dialog {
     }
 
     function reset() {
-        score = 0;
+        score = 0
         textInput.text = ""
     }
 

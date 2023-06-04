@@ -22,129 +22,7 @@ var prevCardId = -1
 var scoreValue = 0
 var won = false
 var timer = 0
-
-//const dataArray = [
-//  {
-//    name: "alarm",
-//    img: "resources/pics/im1.png",
-//    imgId: 1,
-//  },
-//  {
-//    name: "book",
-//    img: "resources/pics/book.png",
-//    imgId: 2,
-//  },
-//  {
-//    name: "card-game",
-//    img: "resources/pics/card-game.png",
-//    imgId: 3,
-//  },
-//  {
-//    name: "card-games",
-//    img: "resources/pics/card-games.png",
-//    imgId: 4,
-//  },
-//  {
-//    name: "checker-board",
-//    img: "resources/pics/checker-board.png",
-//    imgId: 5,
-//  },
-//  {
-//    name: "confrontation",
-//    img: "resources/pics/confrontation.png",
-//    imgId: 6,
-//  },
-//  {
-//    name: "cover",
-//    img: "resources/pics/cover.png",
-//    imgId: 7,
-//  },
-//  {
-//    name: "diamond",
-//    img: "resources/pics/diamond.png",
-//    imgId: 8,
-//  },
-//  {
-//    name: "alarm-clock",
-//    img: "resources/pics/alarm-clock.png",
-//    imgId: 9,
-//  },
-//  {
-//    name: "edit",
-//    img: "resources/pics/edit.png",
-//    imgId: 10,
-//  },
-//  {
-//    name: "game",
-//    img: "resources/pics/game.png",
-//    imgId: 11,
-//  },
-//  {
-//    name: "hourglass",
-//    img: "resources/pics/hourglass.png",
-//    imgId: 12,
-//  },
-//  {
-//    name: "like",
-//    img: "resources/pics/like.png",
-//    imgId: 13,
-//  },
-//  {
-//    name: "photo-camera",
-//    img: "resources/pics/photo-camera.png",
-//    imgId: 14,
-//  },
-//  {
-//    name: "roller-skate",
-//    img: "resources/pics/roller-skate.png",
-//    imgId: 15,
-//  },
-//  {
-//    name: "star",
-//    img: "resources/pics/star.png",
-//    imgId: 16,
-//  },
-//  {
-//    name: "train",
-//    img: "resources/pics/train.png",
-//    imgId: 17,
-//  },
-//  {
-//    name: "car",
-//    img: "resources/pics/car.png",
-//    imgId: 18,
-//  },
-//  {
-//    name: "globe",
-//    img: "resources/pics/globe.png",
-//    imgId: 19,
-//  },
-//  {
-//    name: "cpp",
-//    img: "resources/pics/cpp.png",
-//    imgId: 20,
-//  },
-//  {
-//    name: "air-hot-balloon",
-//    img: "resources/pics/air-hot-balloon.png",
-//    imgId: 21,
-//  },
-//  {
-//    name: "woman",
-//    img: "resources/pics/woman.png",
-//    imgId: 22,
-//  },
-//  {
-//    name: "fan",
-//    img: "resources/pics/fan.png",
-//    imgId: 23,
-//  },
-//  {
-//    name: "hawaiian-shirt",
-//    img: "resources/pics/hawaiian-shirt.png",
-//    imgId: 24,
-//  },
-//];
+var clock = 0
 
 const dataArray = [
   {
@@ -156,8 +34,131 @@ const dataArray = [
     name: "book",
     img: "resources/pics/book.png",
     imgId: 2,
-  }
+  },
+  {
+    name: "card-game",
+    img: "resources/pics/card-game.png",
+    imgId: 3,
+  },
+  {
+    name: "card-games",
+    img: "resources/pics/card-games.png",
+    imgId: 4,
+  },
+  {
+    name: "checker-board",
+    img: "resources/pics/checker-board.png",
+    imgId: 5,
+  },
+  {
+    name: "confrontation",
+    img: "resources/pics/confrontation.png",
+    imgId: 6,
+  },
+  {
+    name: "cover",
+    img: "resources/pics/cover.png",
+    imgId: 7,
+  },
+  {
+    name: "diamond",
+    img: "resources/pics/diamond.png",
+    imgId: 8,
+  },
+  {
+    name: "alarm-clock",
+    img: "resources/pics/alarm-clock.png",
+    imgId: 9,
+  },
+  {
+    name: "edit",
+    img: "resources/pics/edit.png",
+    imgId: 10,
+  },
+  {
+    name: "game",
+    img: "resources/pics/game.png",
+    imgId: 11,
+  },
+  {
+    name: "hourglass",
+    img: "resources/pics/hourglass.png",
+    imgId: 12,
+  },
+  {
+    name: "like",
+    img: "resources/pics/like.png",
+    imgId: 13,
+  },
+  {
+    name: "photo-camera",
+    img: "resources/pics/photo-camera.png",
+    imgId: 14,
+  },
+  {
+    name: "roller-skate",
+    img: "resources/pics/roller-skate.png",
+    imgId: 15,
+  },
+  {
+    name: "star",
+    img: "resources/pics/star.png",
+    imgId: 16,
+  },
+  {
+    name: "train",
+    img: "resources/pics/train.png",
+    imgId: 17,
+  },
+  {
+    name: "car",
+    img: "resources/pics/car.png",
+    imgId: 18,
+  },
+  {
+    name: "globe",
+    img: "resources/pics/globe.png",
+    imgId: 19,
+  },
+  {
+    name: "cpp",
+    img: "resources/pics/cpp.png",
+    imgId: 20,
+  },
+  {
+    name: "air-hot-balloon",
+    img: "resources/pics/air-hot-balloon.png",
+    imgId: 21,
+  },
+  {
+    name: "woman",
+    img: "resources/pics/woman.png",
+    imgId: 22,
+  },
+  {
+    name: "fan",
+    img: "resources/pics/fan.png",
+    imgId: 23,
+  },
+  {
+    name: "hawaiian-shirt",
+    img: "resources/pics/hawaiian-shirt.png",
+    imgId: 24,
+  },
 ];
+
+//const dataArray = [
+//  {
+//    name: "alarm",
+//    img: "resources/pics/im1.png",
+//    imgId: 1,
+//  },
+//  {
+//    name: "book",
+//    img: "resources/pics/book.png",
+//    imgId: 2,
+//  }
+//];
 
 //const dataArray = [{
 //                       "name": "alarm",
@@ -205,11 +206,11 @@ function checkForMatch() {
     var firstCard = board[choosenFirstCardId]
     var secondCard = board[choosenSecondCardId]
     resetDataStructures()
-    scoreValue = cardsWon.length
+
     if (optionOneImageId === optionTwoImageId) {
         firstCard.state = "SOLVED"
         secondCard.state = "SOLVED"
-        scoreValue += 1
+        scoreValue += Math.max(1, Math.ceil((600 - clock*10)/10))
         cardsWon.push(optionTwoImageId)
     } else {
         firstCard.state = "INIT"
@@ -230,6 +231,10 @@ function index(column, row) {
 
 function setTicks(ticks) {
     timer = ticks
+}
+
+function setClock(seconds) {
+    clock = seconds
 }
 
 function resetDataStructures() {

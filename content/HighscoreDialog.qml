@@ -77,8 +77,8 @@ Dialog {
             delegate: Rectangle {
                 id: recordDeligate
                 color: Constants.gold_bg_300
-                implicitWidth: Math.max(100, textField.width) + 30
-                implicitHeight: 25
+                implicitWidth: dialogContent.width / 2
+                implicitHeight: dialogContent.height / 10
                 border.width: 1
                 border.color: Constants.gold_bg_text_500
                 Text {
