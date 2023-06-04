@@ -12,10 +12,15 @@ Dialog {
 
     property string inputText: textInput.text
     property int score: 0
+    property color buttonTextColor: Constants.gold_bg_text_100
+    property color buttonColor: Constants.gold_bg_900
+    property color buttonPressedColor: Constants.gold_bg_100
 
     onAccepted: {
         console.log("Saving the score : ", String(score).padStart(4, ' '))
         GameData.addData(inputText, score)
+        highscores.tableData = GameData.fetchData()
+        highscores.showAndFocus()
         reset();
     }
 
@@ -87,12 +92,58 @@ Dialog {
         id: footerButtons
         buttonLayout: DialogButtonBox.AndroidLayout
         Button {
+            id: saveButton
             text: qsTr("Save")
             DialogButtonBox.buttonRole: DialogButtonBox.AcceptRole
+
+            contentItem: Text {
+                text: saveButton.text
+                font: saveButton.font
+                opacity: enabled ? 1.0 : 0.3
+                color: saveButton.down ? buttonTextColor : buttonTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+            }
+
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                color: saveButton.down ? buttonPressedColor : buttonColor
+                border {
+                    width: 2
+                    color: Qt.darker(activePalette.button)
+                }
+                antialiasing: true
+                radius: 20
+            }
         }
         Button {
+            id: closeButton
             text: qsTr("Close")
             DialogButtonBox.buttonRole: DialogButtonBox.RejectRole
+
+            contentItem: Text {
+                text: closeButton.text
+                font: closeButton.font
+                opacity: enabled ? 1.0 : 0.3
+                color: closeButton.down ? buttonTextColor : buttonTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                elide: Text.ElideRight
+            }
+
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 40
+                color: closeButton.down ? buttonPressedColor : buttonColor
+                border {
+                    width: 2
+                    color: Qt.darker(activePalette.button)
+                }
+                antialiasing: true
+                radius: 20
+            }
         }
     }
 }

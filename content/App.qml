@@ -75,6 +75,7 @@ Window {
             interactive: true
             anchors.horizontalCenter: parent.horizontalCenter
             delegate: Rectangle {
+                id: pageIndicatorButton
                 implicitWidth: 20
                 implicitHeight: 20
 
@@ -88,6 +89,17 @@ Window {
                         duration: 100
                     }
                 }
+            }
+            background: Rectangle {
+                implicitWidth: 100
+                implicitHeight: 22
+                color: Constants.colorAccent1
+                border {
+                    width: 1
+                    color: Qt.darker(activePalette.button)
+                }
+                antialiasing: true
+                radius: 15
             }
 
         }  // PageIndicator

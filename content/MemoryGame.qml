@@ -31,17 +31,16 @@ Rectangle {
 
         onTickChanged: {
             MemoryGame.setTicks(Timeout.ticks)
+            var scoreValue = MemoryGame.getScore()
+            var formattedNumber = String(scoreValue).padStart(4, ' ')
+            score.text = "  Score: " + formattedNumber + "  "
             if (MemoryGame.isWon()) {
-                score.text = "  You Won!  "
                 Timeout.stopAllTimers()
+                 score.text = "  Winning Score: " + formattedNumber + "  "
                 animationWon.start()
                 MemoryGame.setWonColour(Constants.gold_bg_500)
                 nameInputDialog.score = MemoryGame.getScore()
                 nameInputDialog.showAndFocus()
-            } else {
-                var scoreValue = MemoryGame.getScore()
-                var formattedNumber = String(scoreValue).padStart(4, ' ')
-                score.text = "  Score: " + formattedNumber + "  "
             }
         }
     }
@@ -242,6 +241,7 @@ Rectangle {
                 id: btnHighScores
                 text: "High Scores"
                 onClicked: {
+                    highscores.tableData = GameData.fetchData()
                     highscores.showAndFocus()
                 }
             }
