@@ -31,19 +31,14 @@
 <br />
 <div align="center">
   <a href="https://github.com/KRVPerera/SieluHz">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/game_Screen.png" alt="Logo" width="200" height="400">
   </a>
 
-  <h3 align="center">SieluHz</h3>
+  <h3 align="center">SieluHz [DRAFT README]</h3>
 
   <p align="center">
     Classic memory tile game using QML
     <br />
-    <a href="https://github.com/KRVPerera/SieluHz"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/KRVPerera/SieluHz">View Demo</a>
-    ·
     <a href="https://github.com/KRVPerera/SieluHz/issues">Report Bug</a>
     ·
     <a href="https://github.com/KRVPerera/SieluHz/issues">Request Feature</a>
@@ -104,14 +99,7 @@ Use the `BLANK_README.md` to get started.
 
 This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* QT - QML
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -126,9 +114,7 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
+* QT 6.5
   ```
 
 ### Installation
@@ -224,33 +210,24 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 
 Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/KRVPerera/SieluHze.svg?style=for-the-badge
 [contributors-url]: https://github.com/KRVPerera/SieluHz/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/KRVPerera/SieluHze.svg?style=for-the-badge
 [forks-url]: https://github.com/KRVPerera/SieluHz/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/KRVPerera/SieluHze.svg?style=for-the-badge
 [stars-url]: https://github.com/KRVPerera/SieluHz/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/KRVPerera/SieluHze.svg?style=for-the-badge
 [issues-url]: https://github.com/KRVPerera/SieluHz/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/KRVPerera/SieluHze.svg?style=for-the-badge
 [license-url]: https://github.com/KRVPerera/SieluHz/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+[linkedin-url]: https://www.linkedin.com/in/krvperera/
 [product-screenshot]: images/screenshot.png
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
